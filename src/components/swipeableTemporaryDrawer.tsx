@@ -1,15 +1,16 @@
 import * as React from 'react';
-import Box from '@mui/material/Container';
+import { Button, Box } from '@mui/material';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { pages } from '../common/variables';
 
 type DrawerProps = {
     open: boolean;
     toggleDrawer: (open : boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+    handleCloseNavMenu: () => void;
 }
 
-export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerProps) {
+export default function SwipeableTemporaryDrawer({open, toggleDrawer, handleCloseNavMenu} : DrawerProps) {
   return (
-    <React.Fragment >
         <SwipeableDrawer
         anchor="right"
         open={open}
@@ -19,9 +20,20 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerPr
             <Box 
                 sx={{width: '80vw'}}
             >
-                For Sale
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ 
+                      m: 2,
+                      display: 'block',
+                      textAlign: 'left'
+                     }}
+                  >
+                    {page}
+                  </Button>
+                ))}
             </Box>
         </SwipeableDrawer>
-    </React.Fragment>
   );
 }

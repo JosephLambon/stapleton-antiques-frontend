@@ -1,0 +1,1 @@
+export const pages = ['For sale', 'Sold', 'Contact'];
