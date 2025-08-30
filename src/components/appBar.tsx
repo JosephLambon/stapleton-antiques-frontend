@@ -12,18 +12,21 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Agriculture from '@mui/icons-material/Agriculture';
+import { Constants } from '../common/constants';
+import SwipeableTemporaryDrawer from './swipeableTemporaryDrawer';
+import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 
 const pages = ['For sale', 'Sold', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -34,6 +37,22 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer =
+    (open: boolean) =>
+    (event: KeyboardEvent | MouseEvent) => {
+      if (
+        event &&
+        event.type === "keydown" &&
+        ((event as KeyboardEvent).key === "Tab" ||
+          (event as KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+      setDrawerOpen(open);
+    };
 
   return (
     <AppBar position="static">
@@ -54,7 +73,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Stapleton Antiques
+            {Constants.COMPANY_NAME}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -63,12 +82,16 @@ function ResponsiveAppBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={toggleDrawer(true)}
               color="inherit"
             >
+              <SwipeableTemporaryDrawer 
+                open={drawerOpen}
+                toggleDrawer={toggleDrawer}
+                />
               <MenuIcon />
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -89,7 +112,7 @@ function ResponsiveAppBar() {
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
           <Agriculture sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
@@ -107,7 +130,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Stapleton Antiques
+            {Constants.COMPANY_NAME}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
