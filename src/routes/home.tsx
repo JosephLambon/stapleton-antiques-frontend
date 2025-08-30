@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material"
+import AppBar from '../components/appBar';
 
 function Home() {
   return (
     <>
-      <Typography sx={{m:2}} variant="h1">Stapleton Antiques</Typography>
+      <AppBar />
     </>
   )
 }
