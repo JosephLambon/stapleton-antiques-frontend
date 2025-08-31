@@ -1,5 +1,5 @@
-import type { TypographyVariantsOptions } from "@mui/material";
+import { type ThemeOptions } from "@mui/material/styles";
 
 export const typography = {
-  fontFamily: "Arial"
-} as TypographyVariantsOptions;
+  fontFamily: "BacasimeAntique"
+} as ThemeOptions["typography"];

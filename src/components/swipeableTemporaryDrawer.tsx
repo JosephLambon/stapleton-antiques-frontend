@@ -18,7 +18,9 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerPr
         onOpen={toggleDrawer(true)}
         >
             <Box 
-                sx={{width: '80vw'}}
+                sx={{
+                  width: '80vw',
+                }}
             >
                 {pages.map((page) => (
                   <Button
@@ -28,8 +30,10 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerPr
                     }}
                     sx={{ 
                       m: 2,
+                      fontSize: '16px',
                       display: 'block',
-                      textAlign: 'left'
+                      textAlign: 'left',
+                      textTransform: 'capitalize'
                      }}
                   >
                     {page.title}

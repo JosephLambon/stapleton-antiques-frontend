@@ -1,4 +1,4 @@
-import type { Palette } from "@mui/material";
+import { type ThemeOptions } from "@mui/material/styles";
 
 export const palette = {
     primary: {
@@ -7,4 +7,4 @@ export const palette = {
     secondary: {
         main: '#c2c2c2'
     }
-} as Palette;
+} as ThemeOptions["palette"];

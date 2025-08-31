@@ -44,10 +44,7 @@ function ResponsiveAppBar() {
               ml: 1,
               mr: 3,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
               color: 'inherit',
-              textDecoration: 'none',
             }}
           >
             {Constants.COMPANY_NAME}
@@ -78,9 +75,11 @@ function ResponsiveAppBar() {
                 sx={{
                    my: 2,
                    mx: 1,
+                   fontSize: '16px',
                    color: 'white',
                    display: 'block',
-                   textAlign: 'left'
+                   textAlign: 'left',
+                   textTransform: 'capitalize'
                   }}
               >
                 {page.title}
