@@ -3,36 +3,21 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { Constants } from '../common/constants';
 import SwipeableTemporaryDrawer from './swipeableTemporaryDrawer';
 import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { pages } from '../common/variables';
 import { useNavigate } from 'react-router-dom';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function ResponsiveAppBar() {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
-  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -80,11 +65,7 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
+              flexGrow: 1
             }}
           >
             {Constants.COMPANY_NAME}
@@ -95,8 +76,11 @@ function ResponsiveAppBar() {
             }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.title}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  window.open(page.link);
+                }}
                 sx={{
                    my: 2,
                    mx: 1,
@@ -105,7 +89,7 @@ function ResponsiveAppBar() {
                    textAlign: 'left'
                   }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>

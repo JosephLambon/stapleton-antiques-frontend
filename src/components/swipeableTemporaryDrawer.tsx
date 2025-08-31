@@ -12,6 +12,7 @@ type DrawerProps = {
 export default function SwipeableTemporaryDrawer({open, toggleDrawer, handleCloseNavMenu} : DrawerProps) {
   return (
         <SwipeableDrawer
+        disableSwipeToOpen
         anchor="right"
         open={open}
         onClose={toggleDrawer(false)}
@@ -22,15 +23,18 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer, handleClos
             >
                 {pages.map((page) => (
                   <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
+                    key={page.title}
+                    onClick={() =>{
+                      handleCloseNavMenu;
+                      window.open(page.link);
+                    }}
                     sx={{ 
                       m: 2,
                       display: 'block',
                       textAlign: 'left'
                      }}
                   >
-                    {page}
+                    {page.title}
                   </Button>
                 ))}
             </Box>
