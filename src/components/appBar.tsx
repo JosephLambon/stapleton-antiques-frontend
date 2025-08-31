@@ -14,11 +14,6 @@ import { useNavigate } from 'react-router-dom';
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -78,7 +73,6 @@ function ResponsiveAppBar() {
               <Button
                 key={page.title}
                 onClick={() => {
-                  handleCloseNavMenu();
                   window.open(page.link);
                 }}
                 sx={{
@@ -108,14 +102,15 @@ function ResponsiveAppBar() {
               onClick={toggleDrawer(true)}
               color="inherit"
             >
-              <SwipeableTemporaryDrawer 
-                open={drawerOpen}
-                toggleDrawer={toggleDrawer}
-                handleCloseNavMenu={handleCloseNavMenu}
-                />
               <MenuIcon />
             </IconButton>
+            
           </Box>
+
+          <SwipeableTemporaryDrawer 
+            toggleDrawer={toggleDrawer}
+            open={drawerOpen}
+            />
         </Toolbar>
       </Container>
     </AppBar>

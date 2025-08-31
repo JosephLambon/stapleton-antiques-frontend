@@ -6,10 +6,9 @@ import { pages } from '../common/variables';
 type DrawerProps = {
     open: boolean;
     toggleDrawer: (open : boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
-    handleCloseNavMenu: () => void;
 }
 
-export default function SwipeableTemporaryDrawer({open, toggleDrawer, handleCloseNavMenu} : DrawerProps) {
+export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerProps) {
   return (
         <SwipeableDrawer
         disableSwipeToOpen
@@ -25,7 +24,6 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer, handleClos
                   <Button
                     key={page.title}
                     onClick={() =>{
-                      handleCloseNavMenu;
                       window.open(page.link);
                     }}
                     sx={{ 
