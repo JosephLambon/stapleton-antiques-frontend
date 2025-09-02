@@ -16,6 +16,26 @@ export const components = {
             `,
             },
         },
+    },
+    // When the parent ImageListItem is hovered, display title
+    MuiImageListItemBar: {
+        styleOverrides: {
+            root: {
+                height: '100%',
+                width: '100%',
+                p:5,
+                textAlign: 'center',
+                backgroundColor: 'rgba(0, 17, 94, 0.25)',
+                display: 'none',
+                '.MuiImageListItem-root:hover &': {
+                    display: 'flex'
+                },
+            },
+            title: {
+                fontSize: '2em',
+                fontWeight: 500,
+            },
+        },
     }
 } as ThemeOptions["components"];
 
