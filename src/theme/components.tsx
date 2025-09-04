@@ -20,21 +20,27 @@ export const components = {
     // When the parent ImageListItem is hovered, display title
     MuiImageListItemBar: {
         styleOverrides: {
-            root: {
+            root: ({ theme }) => ({
+                [theme.breakpoints.up('sm')]: {
+                    backgroundColor: 'rgba(0, 17, 94, 0.25)',
+                    p:5,
+                    '.MuiImageListItem-root:hover &': {
+                        visibility: 'visible'
+                    },
+                    visibility: 'hidden',
+                },
                 height: '100%',
                 width: '100%',
-                p:5,
                 textAlign: 'center',
-                backgroundColor: 'rgba(0, 17, 94, 0.25)',
-                display: 'none',
-                '.MuiImageListItem-root:hover &': {
-                    display: 'flex'
-                },
-            },
+            }),
             title: {
                 fontSize: '2em',
                 fontWeight: 500,
             },
+            subtitle: {
+                fontSize: '1em',
+                fontWeight: 500,
+            }
         },
     }
 } as ThemeOptions["components"];
