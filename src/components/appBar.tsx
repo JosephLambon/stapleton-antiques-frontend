@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { Constants } from '../common/constants';
-import SwipeableTemporaryDrawer from './swipeableTemporaryDrawer';
+import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { pages } from '../common/variables';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters >
           <Typography
             variant="h6"
             noWrap
@@ -55,7 +55,6 @@ function ResponsiveAppBar() {
             noWrap
             onClick={() => {navigate('/')}}
             sx={{
-              mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1
             }}

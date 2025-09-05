@@ -17,9 +17,9 @@ export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerPr
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         >
-            <Box 
+            <Box
                 sx={{
-                  width: '80vw',
+                  width: '80vw'
                 }}
             >
                 {pages.map((page) => (
