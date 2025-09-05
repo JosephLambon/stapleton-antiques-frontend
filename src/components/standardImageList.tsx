@@ -12,7 +12,6 @@ export default function StandardImageList( ) {
 
     return (   
             <ImageList
-            id='test-element-root-ref'
             sx={{
                 overflowY: 'visible',
                 height: 'auto'
@@ -24,13 +23,13 @@ export default function StandardImageList( ) {
                     const [containerRef, isVisible] = useOnScreen({
                         root: null,
                         rootMargin: "0px 0px 0px 0px",
-                        threshold: onMobile ? 0.2 : 0.8
+                        threshold: onMobile ? 0.2 : 0.4
                     })
                     return (    
                         <Fade
                         key={`wrapper-antique-${index}`}
                         appear={true}        
-                        timeout={onMobile ? 500 : 1500}
+                        timeout={onMobile ? 800 : 1000}
                         in={isVisible}
                         >
                             <Box
@@ -40,34 +39,22 @@ export default function StandardImageList( ) {
                                 sx={{
                                     '&:hover': {
                                         cursor: 'pointer',
-                                    }               
+                                    },
+                                    transform: isVisible ? 'translateY(0)' : 'translateY(10%)', // start off left
+                                    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)', // smooth in/out
                                 }}
                                 >
                                     <img
                                     srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                        src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                                        alt={item.title}
-                                        loading="lazy"
+                                    src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                                    alt={item.title}
+                                    loading="lazy"
                                     />
-
-                                    <Box
-                                    display={onMobile ? 'flex' : 'none'}
-                                    >
-                                        <ImageListItemBar
-                                        title={item.title}
-                                        subtitle='£50'
-                                        position={'below'}
-                                        />                                        
-                                    </Box>
-                                    <Box
-                                    display={onMobile ? 'none' : 'flex'}
-                                    >
-                                        <ImageListItemBar
-                                        title={item.title}
-                                        subtitle='£50'
-                                        position={'bottom'}
-                                        />                                        
-                                    </Box>
+                                    <ImageListItemBar
+                                    title={item.title}
+                                    subtitle='£50'
+                                    position={onMobile ? 'below' : 'bottom'}
+                                    />                                        
                                 </ImageListItem>    
                             </Box>
                         </Fade>
