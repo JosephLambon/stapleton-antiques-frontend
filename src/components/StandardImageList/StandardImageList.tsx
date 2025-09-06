@@ -1,21 +1,18 @@
-import { antiqueItemData as antiques } from '../common/variables';
-import ImageList from '@mui/material/ImageList';
+import { antiqueItemData as antiques } from '../../common/variables';
+import { ImageListHiddenOverflow, ImageListItemSliding } from './StandardImageList.styling';
 import ImageListItem from '@mui/material/ImageListItem';
 import { ImageListItemBar, useMediaQuery, Fade, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import useOnScreen from '../hooks/useOnScreen';
+
+import useOnScreen from '../../hooks/useOnScreen';
 
 export default function StandardImageList( ) {
     const theme = useTheme();
     const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (   
-            <ImageList
-            sx={{
-                overflowY: 'visible',
-                height: 'auto'
-            }}
+            <ImageListHiddenOverflow
             cols={onMobile ? 1 : 3}
             gap={onMobile ? 20 : 10}
             >
@@ -35,14 +32,8 @@ export default function StandardImageList( ) {
                             <Box
                             ref={containerRef}
                             >
-                                <ImageListItem
-                                sx={{
-                                    '&:hover': {
-                                        cursor: 'pointer',
-                                    },
-                                    transform: isVisible ? 'translateY(0)' : 'translateY(10%)', // start off left
-                                    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)', // smooth in/out
-                                }}
+                                <ImageListItemSliding
+                                isVisible = {isVisible}
                                 >
                                     <img
                                     srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -55,11 +46,11 @@ export default function StandardImageList( ) {
                                     subtitle='£50'
                                     position={onMobile ? 'below' : 'bottom'}
                                     />                                        
-                                </ImageListItem>    
+                                </ImageListItemSliding>    
                             </Box>
                         </Fade>
                     )
                 })}
-            </ImageList>
+            </ImageListHiddenOverflow>
   );
 }

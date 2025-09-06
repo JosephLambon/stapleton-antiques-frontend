@@ -1,5 +1,5 @@
 import { type ThemeOptions } from "@mui/material/styles";
 
-export const typography = {
+export const typography : ThemeOptions["typography"] = {
   fontFamily: "BacasimeAntique"
-} as ThemeOptions["typography"];
+};

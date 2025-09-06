@@ -1,7 +1,7 @@
 import { type ThemeOptions } from "@mui/material/styles";
 import BacasimeAntique from '../assets/Bacasime_Antique/BacasimeAntique-Regular.ttf';
 
-export const components = {
+export const components : ThemeOptions["components"] = {
     MuiCssBaseline: {
         styleOverrides:{
             '@font-face': {
@@ -14,8 +14,8 @@ export const components = {
                 local('BacasimeAntique-Regular'),
                 url(${BacasimeAntique}) format('truetype')
             `,
-            },
-        },
+            }
+        }
     },
     // When the parent ImageListItem is hovered, display title
     MuiImageListItemBar: {
@@ -43,5 +43,5 @@ export const components = {
             }
         },
     }
-} as ThemeOptions["components"];
+};
 
