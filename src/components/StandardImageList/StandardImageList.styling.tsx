@@ -19,5 +19,8 @@ export const ImageListItemSliding = styled(ImageListItem, {
         cursor: 'pointer',
     },
     transform: isVisible ? 'translateY(0)' : 'translateY(10%)',
-    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)'
+    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
+    borderRadius: '5px',
+    overflow:'hidden',
+    boxShadow: "0px 0px 10px rgb(205, 205, 205)"
 }));
