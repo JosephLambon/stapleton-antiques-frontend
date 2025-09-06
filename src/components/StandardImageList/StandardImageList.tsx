@@ -1,6 +1,5 @@
 import { antiqueItemData as antiques } from '../../common/variables';
 import { ImageListHiddenOverflow, ImageListItemSliding } from './StandardImageList.styling';
-import ImageListItem from '@mui/material/ImageListItem';
 import { ImageListItemBar, useMediaQuery, Fade, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
