@@ -1,5 +1,6 @@
 import { type ThemeOptions } from "@mui/material/styles";
 import BacasimeAntique from '../assets/Bacasime_Antique/BacasimeAntique-Regular.ttf';
+import { palette } from './palette';
 
 export const components : ThemeOptions["components"] = {
     MuiCssBaseline: {
@@ -31,15 +32,20 @@ export const components : ThemeOptions["components"] = {
                 },
                 height: '100%',
                 width: '100%',
-                textAlign: 'center',
+                textAlign: 'center'
             }),
-            title: {
-                fontSize: '2em',
+            titleWrap: {
+                padding: '10px 10px 10px'
+            },
+            title: {    
+                fontSize: '1.5rem',
                 fontWeight: 500,
+                color: palette.text.primary
             },
             subtitle: {
-                fontSize: '1em',
+                fontSize: '1rem',
                 fontWeight: 500,
+                color: palette.text.secondary
             }
         },
     }

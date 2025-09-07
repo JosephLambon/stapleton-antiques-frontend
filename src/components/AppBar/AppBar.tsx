@@ -39,7 +39,7 @@ function ResponsiveAppBar() {
     };
 
   return (
-    <AppBar position="static">
+    <AppBar disableGutters position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{
           display: 'grid',
