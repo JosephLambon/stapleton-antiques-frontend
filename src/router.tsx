@@ -4,9 +4,9 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import {theme} from './theme/index';
+import theme from './theme/index';
 import Home from './routes/home';
 
 const router = createBrowserRouter([

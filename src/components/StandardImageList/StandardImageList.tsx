@@ -1,5 +1,9 @@
 import { antiqueItemData as antiques } from '../../common/variables';
-import { ImageListHiddenOverflow, ImageListItemSliding } from './StandardImageList.styling';
+import { 
+    ImageListHiddenOverflow,
+    ImageListItemSliding,
+    ImageListItemBarComputer
+} from './StandardImageList.styling';
 import { ImageListItemBar, useMediaQuery, Fade, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
@@ -41,11 +45,19 @@ export default function StandardImageList( ) {
                                     alt={item.title}
                                     loading="lazy"
                                     />
-                                    <ImageListItemBar
-                                    title={item.title}
-                                    subtitle='£50'
-                                    position={onMobile ? 'below' : 'bottom'}
-                                    />                                        
+                                    {onMobile ? (
+                                        <ImageListItemBar
+                                        title={item.title}
+                                        subtitle='£50'
+                                        position={'below'}
+                                        />                   
+                                    ) : (
+                                        <ImageListItemBarComputer
+                                        title={item.title}
+                                        subtitle='£50'
+                                        position={'bottom'}
+                                        />
+                                    )}
                                 </ImageListItemSliding>    
                             </Box>
                         </Fade>

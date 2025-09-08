@@ -1,6 +1,7 @@
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import ImageList, { type ImageListProps } from '@mui/material/ImageList';
 import ImageListItem, { type ImageListItemProps } from '@mui/material/ImageListItem';
+import ImageListItemBar, { type ImageListItemBarProps } from '@mui/material/ImageListItemBar';
 
 interface ImageListItemPropsSliding extends ImageListItemProps {
   isVisible?: boolean;
@@ -22,4 +23,12 @@ export const ImageListItemSliding = styled(ImageListItem, {
     transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)'
 }));
 
-
+export const ImageListItemBarComputer = styled(ImageListItemBar)<ImageListItemBarProps>(({theme}) =>({
+    backgroundColor: alpha(theme.palette.primary.main, 0.25),
+    visibility: 'hidden',
+    '.MuiImageListItem-root:hover &': {
+      visibility: 'visible'
+    },
+    height: '100%',
+    width: '100%'
+}))

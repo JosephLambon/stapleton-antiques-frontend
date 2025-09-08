@@ -1,11 +1,15 @@
-import { createTheme, type ThemeOptions } from "@mui/material/styles";
+import { responsiveFontSizes, createTheme, type Theme } from "@mui/material/styles";
 import { typography } from "./typography";
 import { palette } from "./palette";
 import { components } from './components';
  
-export const theme : ThemeOptions = createTheme({
+let theme : Theme = createTheme({
     cssVariables: true,
     typography,
     components,
     palette
 });
+
+theme = responsiveFontSizes(theme);
+
+export default theme;
