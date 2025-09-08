@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import { Button, Box } from '@mui/material';
-import { SwipeableDrawerThemed } from './SwipeableTemporaryDrawer.styling';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { pages } from '../../common/variables';
+import { AppBarButton } from '../Common';
+import Stack from '@mui/material/Stack';
 
 type DrawerProps = {
     open: boolean;
@@ -10,34 +10,26 @@ type DrawerProps = {
 }
 
 export default function SwipeableTemporaryDrawer({open, toggleDrawer} : DrawerProps) {
-  const theme = useTheme();
-
   return (
-        <SwipeableDrawerThemed
+        <SwipeableDrawer
         disableSwipeToOpen
         anchor="right"
         open={open}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         >
+          <Stack spacing={3} padding={3}>
             {pages.map((page) => (
-              <Button
+                <AppBarButton
+                label={page.title}
                 key={page.title}
                 onClick={() =>{
                   window.open(page.link);
                 }}
-                sx={{ 
-                  m: 2,
-                  fontSize: '16px',
-                  display: 'block',
-                  textAlign: 'left',
-                  textTransform: 'capitalize',
-                  color: theme.palette.primary.contrastText
-                  }}
-              >
-                {page.title}
-              </Button>
+                >
+                </AppBarButton>
             ))}
-        </SwipeableDrawerThemed>
+            </Stack>
+        </SwipeableDrawer>
   );
 }

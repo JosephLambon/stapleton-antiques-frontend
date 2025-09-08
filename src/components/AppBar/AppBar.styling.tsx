@@ -25,13 +25,7 @@ export const PageLinksComputer = styled(Box)<BoxProps>(({theme}) => ({
     justifyContent: 'right',
     gridArea: 'right',
     "& .MuiButton-root": {
-        my: 2,
-        marginRight: theme.spacing(2),
-        width: 'auto',
-        fontSize: '16px',
-        color: theme.palette.primary.contrastText,
-        display: 'block',
-        textAlign: 'center',
-        textTransform: 'capitalize'
+        color: theme.palette.primary.contrastText
     }
 }));
+

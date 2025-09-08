@@ -17,7 +17,6 @@ export const components : ThemeOptions["components"] = {
             }
         }
     },
-    // When the parent ImageListItem is hovered, display title
     MuiImageListItemBar: {
         styleOverrides: {
             root: {
@@ -39,6 +38,22 @@ export const components : ThemeOptions["components"] = {
                 fontSize: '1rem'
             }),
         },
-    }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: ({ theme }) => ({
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.getContrastText(theme.palette.secondary.main),
+          width: 250
+        }),
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        },
+      },
+    },
 };
 
