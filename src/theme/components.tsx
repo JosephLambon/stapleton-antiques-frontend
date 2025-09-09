@@ -29,7 +29,9 @@ export const components : ThemeOptions["components"] = {
                 [theme.breakpoints.down('sm')]: {    
                     color: theme.palette.text.primary
                 },
-                fontSize: '1.5rem'
+                fontSize: '1.5rem',
+                fontWeight: 500,
+                lineHeight: 1.5
             }),
             subtitle: ({ theme }) => ({
                 [theme.breakpoints.down('sm')]: {    
