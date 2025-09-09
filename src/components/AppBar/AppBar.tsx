@@ -38,9 +38,9 @@
       };
 
     return (
-      <AppBar disableGutters position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{
+      <AppBar position='relative'>
+        <Container disableGutters={onMobile ? true : false} maxWidth="lg">
+          <Toolbar sx={{
             display: 'grid',
             gridTemplateAreas: `"left middle right"`,
             gridTemplateColumns: '1fr auto 1fr',
