@@ -1,8 +1,8 @@
 import {useTheme} from '@mui/material/styles';
 import { Container, Typography } from '@mui/material';
 import { MainBackground } from '../components/Common.styling';
-import AppBar from '../components/AppBar/NavigationBar';
-import AntiqueGallery from '../components/StandardImageList/AntiqueGallery';
+import AppBar from '../components/NavigationBar/NavigationBar';
+import AntiqueGallery from '../components/AntiqueGallery/AntiqueGallery';
 
 function Home() {
   const theme = useTheme();
