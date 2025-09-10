@@ -1,8 +1,8 @@
 import {useTheme} from '@mui/material/styles';
 import { Container, Typography } from '@mui/material';
 import { MainBackground } from '../components/Common.styling';
-import AppBar from '../components/AppBar/AppBar';
-import StandardImageList from '../components/StandardImageList/StandardImageList';
+import AppBar from '../components/AppBar/NavigationBar';
+import AntiqueGallery from '../components/StandardImageList/AntiqueGallery';
 
 function Home() {
   const theme = useTheme();
@@ -19,7 +19,7 @@ function Home() {
   Everyone is entitled in full equality to a fair and public hearing by an independent and impartial tribunal, in the determination of his rights and obligations and of any criminal charge against him.
   No one shall be subjected to arbitrary interference with his privacy, family, home or correspondence, nor to attacks upon his honour and reputation. Everyone has the right to the protection of the law against such interference or attacks.
           </Typography>
-          <StandardImageList />
+          <AntiqueGallery />
           <Typography 
           sx={{
             p: 5,

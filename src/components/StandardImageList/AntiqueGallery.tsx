@@ -1,21 +1,21 @@
 import { antiqueItemData as antiques } from '../../common/variables';
 import { 
-    ImageListHiddenOverflow,
-    ImageListItemSliding,
-    ImageListItemBarComputer
-} from './StandardImageList.styling';
+    AntiqueGalleryWrapper,
+    AntiqueGalleryItem,
+    CaptionComputer
+} from './AntiqueGallery.styling';
 import { ImageListItemBar, useMediaQuery, Fade, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 
 import useOnScreen from '../../hooks/useOnScreen';
 
-export default function StandardImageList( ) {
+export default function AntiqueGallery( ) {
     const theme = useTheme();
     const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (   
-            <ImageListHiddenOverflow
+            <AntiqueGalleryWrapper
             cols={onMobile ? 1 : 3}
             gap={onMobile ? 30 : 10}
             >
@@ -35,7 +35,7 @@ export default function StandardImageList( ) {
                             <Box
                             ref={containerRef}
                             >
-                                <ImageListItemSliding
+                                <AntiqueGalleryItem
                                 isVisible = {isVisible}
                                 >
                                     <img
@@ -52,17 +52,17 @@ export default function StandardImageList( ) {
                                         position={'below'}
                                         />                   
                                     ) : (
-                                        <ImageListItemBarComputer
+                                        <CaptionComputer
                                         title={item.title}
                                         subtitle='£50'
                                         position={'bottom'}
                                         />
                                     )}
-                                </ImageListItemSliding>    
+                                </AntiqueGalleryItem>    
                             </Box>
                         </Fade>
                     )
                 })}
-            </ImageListHiddenOverflow>
+            </AntiqueGalleryWrapper>
   );
 }

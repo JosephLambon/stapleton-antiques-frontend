@@ -3,19 +3,19 @@ import ImageList, { type ImageListProps } from '@mui/material/ImageList';
 import ImageListItem, { type ImageListItemProps } from '@mui/material/ImageListItem';
 import ImageListItemBar, { type ImageListItemBarProps } from '@mui/material/ImageListItemBar';
 
-interface ImageListItemPropsSliding extends ImageListItemProps {
+interface AntiqueGalleryItemProps extends ImageListItemProps {
   isVisible?: boolean;
 }
 
-export const ImageListHiddenOverflow = styled(ImageList)<ImageListProps>(({theme}) => ({
+export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(({theme}) => ({
     overflowY: 'visible',
     height: 'auto'
 }));
 
 
-export const ImageListItemSliding = styled(ImageListItem, {
+export const AntiqueGalleryItem = styled(ImageListItem, {
   shouldForwardProp: (prop) => prop !== "isVisible"
-})<ImageListItemPropsSliding>(({theme, isVisible}) => ({
+})<AntiqueGalleryItemProps>(({theme, isVisible}) => ({
     '&:hover': {
         cursor: 'pointer',
     },
@@ -23,7 +23,7 @@ export const ImageListItemSliding = styled(ImageListItem, {
     transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)'
 }));
 
-export const ImageListItemBarComputer = styled(ImageListItemBar)<ImageListItemBarProps>(({theme}) =>({
+export const CaptionComputer = styled(ImageListItemBar)<ImageListItemBarProps>(({theme}) =>({
     backgroundColor: alpha(theme.palette.primary.main, 0.25),
     visibility: 'hidden',
     '.MuiImageListItem-root:hover &': {

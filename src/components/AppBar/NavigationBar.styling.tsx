@@ -7,7 +7,7 @@ export const LogoMobile = styled(Typography)<TypographyProps>(({theme}) => ({
     color: 'inherit'
 }))
 
-export const IconButtonBoxMobile = styled(Box)<BoxProps>(({theme}) => ({
+export const NavDrawerIconWrapper = styled(Box)<BoxProps>(({theme}) => ({
     gridArea: 'right',
     marginRight: 0,
     marginLeft: 'auto'
@@ -19,7 +19,7 @@ export const LogoComputer = styled(Typography)<TypographyProps>(({theme}) => ({
     cursor: 'pointer'
 }))
 
-export const PageLinksComputer = styled(Box)<BoxProps>(({theme}) => ({
+export const NavigationItemWrapper = styled(Box)<BoxProps>(({theme}) => ({
     display: 'flex',
     flexGrow: 1,
     justifyContent: 'right',
