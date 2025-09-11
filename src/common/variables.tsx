@@ -1,20 +1,22 @@
+import ROUTES, { type RoutePath } from './routes';
+
 interface pageLink {
     title: string;
-    link: string;
+    link: RoutePath;
 }
 
 export const pages = [
     {
         title : 'For sale',
-        link: 'https://www.google.com/search?q=forsale'
+        link: ROUTES.root
     },
     {
         title: 'Sold',
-        link: 'https://www.google.com/search?q=forsale'
+        link: ROUTES.sold
     },
     { 
         title: 'Contact',
-        link: 'https://www.google.com/search?q=contact'
+        link: ROUTES.contact
     }
 ] as pageLink[];
 

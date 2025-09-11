@@ -56,6 +56,6 @@ export const components : ThemeOptions["components"] = {
           textTransform: 'none'
         },
       },
-    },
+    }
 };
 

@@ -1,14 +1,12 @@
 import { antiqueItemData as antiques } from '../../common/variables';
 import { 
     AntiqueGalleryWrapper,
-    AntiqueGalleryItem,
-    CaptionComputer
 } from './AntiqueGallery.styling';
-import { ImageListItemBar, useMediaQuery, Fade, Box } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import CONSTANTS from '../../common/constants';
 
-
-import useOnScreen from '../../hooks/useOnScreen';
+import { AntiqueGalleryItem } from './AntiqueGalleryItem';
 
 export default function AntiqueGallery( ) {
     const theme = useTheme();
@@ -16,53 +14,16 @@ export default function AntiqueGallery( ) {
 
     return (   
             <AntiqueGalleryWrapper
-            cols={onMobile ? 1 : 3}
-            gap={onMobile ? 30 : 10}
+            cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
+            gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
             >
-                {antiques.map((item, index) => {
-                    const [containerRef, isVisible] = useOnScreen({
-                        root: null,
-                        rootMargin: "0px 0px 0px 0px",
-                        threshold: onMobile ? 0.2 : 0.2
-                    })
-                    return (    
-                        <Fade
-                        key={`wrapper-antique-${index}`}
-                        appear={true}        
-                        timeout={onMobile ? 650 : 650}
-                        in={isVisible}
-                        >
-                            <Box
-                            ref={containerRef}
-                            >
-                                <AntiqueGalleryItem
-                                isVisible = {isVisible}
-                                >
-                                    <img
-                                    style={{borderRadius: '1%'}}
-                                    srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                    src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                                    alt={item.title}
-                                    loading="lazy"
-                                    />
-                                    {onMobile ? (
-                                        <ImageListItemBar
-                                        title={item.title}
-                                        subtitle='£50'
-                                        position={'below'}
-                                        />                   
-                                    ) : (
-                                        <CaptionComputer
-                                        title={item.title}
-                                        subtitle='£50'
-                                        position={'bottom'}
-                                        />
-                                    )}
-                                </AntiqueGalleryItem>    
-                            </Box>
-                        </Fade>
-                    )
-                })}
+                {antiques.map((item) => (
+                    <AntiqueGalleryItem
+                    key={item.img}
+                    item={item}
+                    onMobile={onMobile}
+                    />
+                ))}
             </AntiqueGalleryWrapper>
   );
 }

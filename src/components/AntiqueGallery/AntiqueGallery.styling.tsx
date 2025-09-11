@@ -13,7 +13,7 @@ export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(({theme})
 }));
 
 
-export const AntiqueGalleryItem = styled(ImageListItem, {
+export const GalleryCard = styled(ImageListItem, {
   shouldForwardProp: (prop) => prop !== "isVisible"
 })<AntiqueGalleryItemProps>(({theme, isVisible}) => ({
     '&:hover': {

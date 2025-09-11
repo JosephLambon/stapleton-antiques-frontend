@@ -4,7 +4,8 @@ import Box, { type BoxProps } from '@mui/material/Box';
 
 export const LogoMobile = styled(Typography)<TypographyProps>(({theme}) => ({
     gridArea: 'middle',
-    color: 'inherit'
+    color: 'inherit',
+    textDecoration: 'none'
 }))
 
 export const NavDrawerIconWrapper = styled(Box)<BoxProps>(({theme}) => ({
@@ -16,7 +17,8 @@ export const NavDrawerIconWrapper = styled(Box)<BoxProps>(({theme}) => ({
 export const LogoComputer = styled(Typography)<TypographyProps>(({theme}) => ({
     gridArea: 'left',
     color: 'inherit',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textDecoration: 'none'
 }))
 
 export const NavigationItemWrapper = styled(Box)<BoxProps>(({theme}) => ({

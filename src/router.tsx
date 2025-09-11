@@ -8,10 +8,11 @@ import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import theme from './theme/index';
 import Home from './routes/home';
+import ROUTES from './common/routes';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: ROUTES.root,
     element: <Home />
   }
 ]);
