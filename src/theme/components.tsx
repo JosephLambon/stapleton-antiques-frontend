@@ -1,7 +1,7 @@
 import { type ThemeOptions } from "@mui/material/styles";
 import BacasimeAntique from '../assets/Bacasime_Antique/BacasimeAntique-Regular.ttf';
 
-export const components = {
+export const components : ThemeOptions["components"] = {
     MuiCssBaseline: {
         styleOverrides:{
             '@font-face': {
@@ -14,34 +14,48 @@ export const components = {
                 local('BacasimeAntique-Regular'),
                 url(${BacasimeAntique}) format('truetype')
             `,
-            },
-        },
+            }
+        }
     },
-    // When the parent ImageListItem is hovered, display title
     MuiImageListItemBar: {
         styleOverrides: {
-            root: ({ theme }) => ({
-                [theme.breakpoints.up('sm')]: {
-                    backgroundColor: 'rgba(0, 17, 94, 0.25)',
-                    p:5,
-                    '.MuiImageListItem-root:hover &': {
-                        visibility: 'visible'
-                    },
-                    visibility: 'hidden',
-                },
-                height: '100%',
-                width: '100%',
-                textAlign: 'center',
-            }),
-            title: {
-                fontSize: '2em',
-                fontWeight: 500,
+            root: {
+                textAlign: 'center'
             },
-            subtitle: {
-                fontSize: '1em',
+            titleWrap: {
+                padding: '10px 10px 10px'
+            },
+            title: ({ theme }) => ({
+                [theme.breakpoints.down('sm')]: {    
+                    color: theme.palette.text.primary
+                },
+                fontSize: '1.5rem',
                 fontWeight: 500,
-            }
+                lineHeight: 1.5
+            }),
+            subtitle: ({ theme }) => ({
+                [theme.breakpoints.down('sm')]: {    
+                    color: theme.palette.text.secondary
+                },
+                fontSize: '1rem'
+            }),
         },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: ({ theme }) => ({
+          backgroundColor: theme.palette.secondary.main,
+          color: theme.palette.getContrastText(theme.palette.secondary.main),
+          width: 250
+        }),
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        },
+      },
     }
-} as ThemeOptions["components"];
+};
 
