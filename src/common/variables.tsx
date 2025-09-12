@@ -7,7 +7,7 @@ interface pageLink {
 
 export const pages = [
     {
-        title : 'For sale',
+        title : 'For Sale',
         link: ROUTES.root
     },
     {

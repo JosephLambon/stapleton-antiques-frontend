@@ -64,7 +64,6 @@ function NavigationBar() {
             <>
               <LogoComputer
                 variant="h5"
-                component="a"
                 noWrap
                 component={Link}
                 to='/'
