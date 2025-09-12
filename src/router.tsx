@@ -1,19 +1,21 @@
-import { createContext, StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import theme from './theme/index';
 import Home from './routes/home';
 import ROUTES from './common/routes';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: ROUTES.root,
-    element: <Home />
+    element: <Home />,
+    errorElement: <ErrorPage/>
   }
 ]);
 
