@@ -7,7 +7,7 @@ interface AntiqueGalleryItemProps extends ImageListItemProps {
   isVisible?: boolean;
 }
 
-export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(({theme}) => ({
+export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(() => ({
     overflowY: 'visible',
     height: 'auto'
 }));
@@ -15,7 +15,7 @@ export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(({theme})
 
 export const GalleryCard = styled(ImageListItem, {
   shouldForwardProp: (prop) => prop !== "isVisible"
-})<AntiqueGalleryItemProps>(({theme, isVisible}) => ({
+})<AntiqueGalleryItemProps>(({ isVisible}) => ({
     '&:hover': {
         cursor: 'pointer',
     },

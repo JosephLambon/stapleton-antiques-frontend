@@ -2,19 +2,19 @@ import { styled } from '@mui/material/styles';
 import Box, { type BoxProps } from '@mui/material/Box';
 import { NavigationLink, type NavigationLinkProps } from '../Common';
 
-export const LogoMobile = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
+export const LogoMobile = styled(NavigationLink)<NavigationLinkProps>(() => ({
     gridArea: 'middle',
     color: 'inherit',
     textDecoration: 'none'
 }))
 
-export const NavDrawerIconWrapper = styled(Box)<BoxProps>(({theme}) => ({
+export const NavDrawerIconWrapper = styled(Box)<BoxProps>(() => ({
     gridArea: 'right',
     marginRight: 0,
     marginLeft: 'auto'
 }))
 
-export const LogoComputer = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
+export const LogoComputer = styled(NavigationLink)<NavigationLinkProps>(() => ({
     gridArea: 'left',
     color: 'inherit',
     cursor: 'pointer',
