@@ -16,25 +16,6 @@ import { pages } from '../../common/variables';
 import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper } from './NavigationBar.styling';
 import { AppBarButton } from '../Common.styling';
 
-// Enable use of react-router's 'Link'
-import * as React from 'react';
-import {
-  Link as RouterLink,
-  type LinkProps as RouterLinkProps
-} from 'react-router-dom';
-import Link from '@mui/material/Link';
-
-const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
-  (props, ref) => (
-    <RouterLink
-      ref={ref}
-      to="/material-ui/getting-started/installation/"
-      {...props}
-    />
-  ),
-);
-
-
 function NavigationBar() {
   const theme = useTheme();
   const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -91,7 +72,6 @@ function NavigationBar() {
                   {pages.map((page) => (
                     <AppBarButton
                     key={page.title}
-                    component={Link}
                     to={page.link}
                     >
                       {page.title}
