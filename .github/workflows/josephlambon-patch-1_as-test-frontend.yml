@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./dist
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,5 +61,5 @@ jobs:
         with:
           app-name: 'as-test-frontend'
           slot-name: 'Production'
-          package: ./node-app/dist
+          package: ./dist
           
