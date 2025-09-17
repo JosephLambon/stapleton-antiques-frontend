@@ -1,4 +1,3 @@
-import * as React from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { pages } from '../../common/variables';
 import { AppBarButton } from '../Common.styling';

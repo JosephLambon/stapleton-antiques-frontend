@@ -1,7 +1,7 @@
 import { antiqueItemData as antiques } from '../../common/variables';
 import { 
     AntiqueGalleryWrapper,
-} from './AntiqueGallery.styling';
+} from '../AntiqueGallery/AntiqueGallery.styling';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CONSTANTS from '../../common/constants';

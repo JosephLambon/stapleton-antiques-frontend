@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
-import Typography, { type TypographyProps } from '@mui/material/Typography';
 import Box, { type BoxProps } from '@mui/material/Box';
+import { NavigationLink, type NavigationLinkProps } from '../Common';
 
-export const LogoMobile = styled(Typography)<TypographyProps>(({theme}) => ({
+export const LogoMobile = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
     gridArea: 'middle',
     color: 'inherit',
     textDecoration: 'none'
@@ -14,7 +14,7 @@ export const NavDrawerIconWrapper = styled(Box)<BoxProps>(({theme}) => ({
     marginLeft: 'auto'
 }))
 
-export const LogoComputer = styled(Typography)<TypographyProps>(({theme}) => ({
+export const LogoComputer = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
     gridArea: 'left',
     color: 'inherit',
     cursor: 'pointer',

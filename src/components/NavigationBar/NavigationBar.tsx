@@ -12,9 +12,27 @@ import { CONSTANTS } from '../../common/constants';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import { useState } from 'react';
 import { pages } from '../../common/variables';
-import { Link } from 'react-router-dom';
+
 import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper } from './NavigationBar.styling';
 import { AppBarButton } from '../Common.styling';
+
+// Enable use of react-router's 'Link'
+import * as React from 'react';
+import {
+  Link as RouterLink,
+  type LinkProps as RouterLinkProps
+} from 'react-router-dom';
+import Link from '@mui/material/Link';
+
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
+  (props, ref) => (
+    <RouterLink
+      ref={ref}
+      to="/material-ui/getting-started/installation/"
+      {...props}
+    />
+  ),
+);
 
 
 function NavigationBar() {
@@ -37,14 +55,13 @@ function NavigationBar() {
         }}>
           {onMobile ? (
             <>
-              <LogoMobile
-                variant="h4"
-                noWrap
-                component={Link}
-                to='/'
-              >
+                <LogoMobile
+                  variant="h4"
+                  noWrap
+                  to="/tester"
+                >
                 {CONSTANTS.COMPANY_NAME}
-              </LogoMobile>
+                </LogoMobile>
               <NavDrawerIconWrapper>
                 <IconButton
                   size="large"
@@ -65,8 +82,7 @@ function NavigationBar() {
               <LogoComputer
                 variant="h5"
                 noWrap
-                component={Link}
-                to='/'
+                to='/pctest'
               >
                 {CONSTANTS.COMPANY_NAME}
               </LogoComputer>
