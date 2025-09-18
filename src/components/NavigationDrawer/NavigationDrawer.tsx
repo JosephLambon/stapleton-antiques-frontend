@@ -2,7 +2,6 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { pages } from '../../common/variables';
 import { AppBarButton } from '../Common.styling';
 import Stack from '@mui/material/Stack';
-import { Link } from 'react-router-dom';
 
 type NavigationDrawerProps = {
     open: boolean;
@@ -23,7 +22,6 @@ export default function NavigationDrawer({open, onOpen, onClose} : NavigationDra
             {pages.map((page) => (
                 <AppBarButton
                 key={page.title}
-                component={Link}
                 to={page.link}
                 >
                   {page.title}

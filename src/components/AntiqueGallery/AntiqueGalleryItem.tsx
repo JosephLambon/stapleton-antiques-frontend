@@ -1,4 +1,4 @@
-import { Fade, Box, ImageListItemBar } from "@mui/material";
+import { Fade, Box } from "@mui/material";
 import { GalleryCard, CaptionComputer } from "./AntiqueGallery.styling";
 import useOnScreen from "../../hooks/useOnScreen";
 import CONSTANTS from "../../common/constants";
@@ -15,7 +15,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
   const [containerRef, isVisible] = useOnScreen({
     root: null,
     rootMargin: "0px 0px 0px 0px",
-    threshold: CONSTANTS.SCREEN_THRESHOLD
+    threshold: onMobile ? CONSTANTS.MOBILE.SCREEN_THRESHOLD : CONSTANTS.LARGER_SCREENS.SCREEN_THRESHOLD
   });
 
   return (
@@ -35,12 +35,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
             alt={item.title}
             loading="lazy"
           />
-          {onMobile ? (
-            <ImageListItemBar
-            title={item.title}
-            subtitle="£50"
-            position="below" />
-          ) : (
+          {onMobile ? null : (
             <CaptionComputer
             title={item.title}
             subtitle="£50"
