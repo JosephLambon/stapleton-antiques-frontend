@@ -2,7 +2,7 @@ import { Box, type BoxProps } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { NavigationLink, type NavigationLinkProps } from "./Common";
 
-export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
+export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({}) => ({
     textAlign: 'center',
     textDecoration: 'none',
     cursor: 'pointer',
