@@ -11,7 +11,7 @@ export const CONSTANTS = {
     LARGER_SCREENS: {
         GALLERY_COLUMNS: 3,
         GALLERY_GAP: 10,
-        SCREEN_THRESHOLD: 0.4
+        SCREEN_THRESHOLD: 0.2
     }
 } as const;
 

@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import { NavigationLink, type NavigationLinkProps } from "./Common";
 
 export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({theme}) => ({
-    ...theme.typography.h6,
     textAlign: 'center',
     textDecoration: 'none',
     cursor: 'pointer',

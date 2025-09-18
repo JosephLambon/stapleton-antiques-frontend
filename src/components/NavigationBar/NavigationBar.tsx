@@ -61,7 +61,7 @@ function NavigationBar() {
           ) : (
             <>
               <LogoComputer
-                variant="h5"
+                variant="h4"
                 noWrap
                 to='/pctest'
               >
@@ -71,6 +71,7 @@ function NavigationBar() {
                 <Stack direction="row" spacing={2} margin={1}>
                   {pages.map((page) => (
                     <AppBarButton
+                    variant='h6'
                     key={page.title}
                     to={page.link}
                     >
