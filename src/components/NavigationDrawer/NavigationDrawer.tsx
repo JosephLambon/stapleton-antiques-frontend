@@ -18,9 +18,10 @@ export default function NavigationDrawer({open, onOpen, onClose} : NavigationDra
         onClose={onClose}
         onOpen={onOpen}
         >
-          <Stack spacing={3} padding={3}>
+          <Stack spacing={5} padding={6}>
             {pages.map((page) => (
                 <AppBarButton
+                variant='h4'
                 key={page.title}
                 to={page.link}
                 >
