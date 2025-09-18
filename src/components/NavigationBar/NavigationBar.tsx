@@ -37,7 +37,7 @@ function NavigationBar() {
           {onMobile ? (
             <>
                 <LogoMobile
-                  variant="h4"
+                  variant="h3"
                   noWrap
                   to="/tester"
                 >

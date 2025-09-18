@@ -20,7 +20,8 @@ export const GalleryCard = styled(ImageListItem, {
         cursor: 'pointer',
     },
     transform: isVisible ? 'translateY(0)' : 'translateY(5%)',
-    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)'
+    transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
+    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px;'
 }));
 
 export const CaptionComputer = styled(ImageListItemBar)<ImageListItemBarProps>(({theme}) =>({
