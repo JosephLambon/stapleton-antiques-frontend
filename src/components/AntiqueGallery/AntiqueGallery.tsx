@@ -1,7 +1,7 @@
 import { antiqueItemData as antiques } from '../../common/variables';
 import { 
     AntiqueGalleryWrapper,
-} from './AntiqueGallery.styling';
+} from '../AntiqueGallery/AntiqueGallery.styling';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CONSTANTS from '../../common/constants';
@@ -16,6 +16,7 @@ export default function AntiqueGallery( ) {
             <AntiqueGalleryWrapper
             cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
             gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
+            rowHeight={300}
             >
                 {antiques.map((item) => (
                     <AntiqueGalleryItem

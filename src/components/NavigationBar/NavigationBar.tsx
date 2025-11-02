@@ -12,10 +12,9 @@ import { CONSTANTS } from '../../common/constants';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
 import { useState } from 'react';
 import { pages } from '../../common/variables';
-import { Link } from 'react-router-dom';
+
 import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper } from './NavigationBar.styling';
 import { AppBarButton } from '../Common.styling';
-
 
 function NavigationBar() {
   const theme = useTheme();
@@ -37,14 +36,13 @@ function NavigationBar() {
         }}>
           {onMobile ? (
             <>
-              <LogoMobile
-                variant="h4"
-                noWrap
-                component={Link}
-                to='/'
-              >
+                <LogoMobile
+                  variant="h3"
+                  noWrap
+                  to="/tester"
+                >
                 {CONSTANTS.COMPANY_NAME}
-              </LogoMobile>
+                </LogoMobile>
               <NavDrawerIconWrapper>
                 <IconButton
                   size="large"
@@ -63,10 +61,9 @@ function NavigationBar() {
           ) : (
             <>
               <LogoComputer
-                variant="h5"
+                variant="h4"
                 noWrap
-                component={Link}
-                to='/'
+                to='/pctest'
               >
                 {CONSTANTS.COMPANY_NAME}
               </LogoComputer>
@@ -74,8 +71,8 @@ function NavigationBar() {
                 <Stack direction="row" spacing={2} margin={1}>
                   {pages.map((page) => (
                     <AppBarButton
+                    variant='h6'
                     key={page.title}
-                    component={Link}
                     to={page.link}
                     >
                       {page.title}
