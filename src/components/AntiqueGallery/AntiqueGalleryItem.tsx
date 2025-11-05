@@ -1,13 +1,11 @@
-import { Fade, Box } from "@mui/material";
+import { Fade, Box, ImageListItemBar } from "@mui/material";
 import { GalleryCard, CaptionComputer } from "./AntiqueGallery.styling";
 import useOnScreen from "../../hooks/useOnScreen";
 import CONSTANTS from "../../common/constants";
+import type { Antique } from "../../services/models/antique";
 
 interface GalleryItemProps {
-  item: {
-    img: string;
-    title: string;
-  };
+  item: Antique;
   onMobile: boolean;
 }
 
@@ -24,21 +22,32 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
     timeout={CONSTANTS.FADE_TIMEOUT}
     in={isVisible}
     >
-      <Box
-      ref={containerRef}>
+      <Box ref={containerRef}
+      sx={{backgroundColor: 'transparent' }}>
         <GalleryCard
+        sx={{backgroundColor: 'transparent'}}
         isVisible={isVisible}>
           <img
-            style={{ borderRadius: "1%" }}
-            srcSet={`${item.img}?w=300&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.img}?w=300&fit=crop&auto=format`}
-            alt={item.title}
+            srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?sp=r&st=2025-11-05T06:03:09Z&se=2040-11-05T14:18:09Z&spr=https&sv=2024-11-04&sr=c&sig=%2BdtoXfmw8O%2BYt5eFMVqIN2Zbguk%2BLZ47yiDhffkvU4w%3D&w=300&fit=crop&auto=format&dpr=2 2x`}
+            src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?sp=r&st=2025-11-05T06:03:09Z&se=2040-11-05T14:18:09Z&spr=https&sv=2024-11-04&sr=c&sig=%2BdtoXfmw8O%2BYt5eFMVqIN2Zbguk%2BLZ47yiDhffkvU4w%3D&w=300&fit=crop&auto=format`}
+            alt={item.name}
             loading="lazy"
           />
-          {onMobile ? null : (
+          {onMobile ? null
+          // (
+          //   <ImageListItemBar
+          //   title={item.name}
+          //   subtitle={"£" + item.price}
+          //   position="below" 
+          //   sx={{
+          //     backgroundColor: 'transparent', // match your page background
+          //   }}
+          //   />
+          // )
+           : (
             <CaptionComputer
-            title={item.title}
-            subtitle="£50"
+            title={item.name}
+            subtitle={item.price}
             position="bottom" />
           )}
         </GalleryCard>
