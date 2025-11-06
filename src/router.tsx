@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Gallery /> }
     // {
-    //   path: "/antiqued/:Id",
+    //   path: Routes.antique + "/Id",
     //   element: <></>
     // },
     ]

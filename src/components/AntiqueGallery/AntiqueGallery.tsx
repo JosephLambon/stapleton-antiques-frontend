@@ -44,7 +44,7 @@ export default function AntiqueGallery( ) {
         <AntiqueGalleryWrapper
             cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
             gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
-            rowHeight={260}
+            rowHeight={240}
             >
               {antiques.map((antique) => (
                   <AntiqueGalleryItem

@@ -63,7 +63,7 @@ function NavigationBar() {
               <LogoComputer
                 variant="h4"
                 noWrap
-                to='/pctest'
+                to='/'
               >
                 {CONSTANTS.COMPANY_NAME}
               </LogoComputer>
