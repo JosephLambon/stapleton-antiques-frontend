@@ -28,8 +28,8 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
         sx={{backgroundColor: 'transparent'}}
         isVisible={isVisible}>
           <img
-            srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?sp=r&st=2025-11-05T06:03:09Z&se=2040-11-05T14:18:09Z&spr=https&sv=2024-11-04&sr=c&sig=%2BdtoXfmw8O%2BYt5eFMVqIN2Zbguk%2BLZ47yiDhffkvU4w%3D&w=300&fit=crop&auto=format&dpr=2 2x`}
-            src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?sp=r&st=2025-11-05T06:03:09Z&se=2040-11-05T14:18:09Z&spr=https&sv=2024-11-04&sr=c&sig=%2BdtoXfmw8O%2BYt5eFMVqIN2Zbguk%2BLZ47yiDhffkvU4w%3D&w=300&fit=crop&auto=format`}
+            srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
+            src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format`}
             alt={item.name}
             loading="lazy"
           />

@@ -12,8 +12,6 @@ import { AntiqueGalleryItem } from './AntiqueGalleryItem';
 import { AntiqueGallerySkeleton } from "./AntiqueGallerySkeleton";
 import { AntiqueGalleryError } from "./AntiqueGalleryError";
 
-const SKELETON_COUNT = 8;
-
 export default function AntiqueGallery( ) {
     const theme = useTheme();
     const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -30,27 +28,32 @@ export default function AntiqueGallery( ) {
       });
 
     return (   
-            <AntiqueGalleryWrapper
+      isLoading? (
+        <AntiqueGalleryWrapper
+        cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
+        gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
+        rowHeight={300}
+        >
+          {Array.from({ length: onMobile ? CONSTANTS.MOBILE.SKELETON_COUNT : CONSTANTS.LARGER_SCREENS.SKELETON_COUNT }).map((_, idx) => (
+            <AntiqueGallerySkeleton key={idx} />
+          ))}
+        </AntiqueGalleryWrapper>
+      ) : error? (
+        <AntiqueGalleryError />
+      ) : (
+        <AntiqueGalleryWrapper
             cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
             gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
             rowHeight={300}
             >
-              {
-                 isLoading? (
-                    Array.from({ length: SKELETON_COUNT }).map((_, idx) => (
-                      <AntiqueGallerySkeleton key={idx} />
-                    ))
-                  ) : (
-                  error? <AntiqueGalleryError /> : (
-                  antiques.map((antique) => (
-                      <AntiqueGalleryItem
-                      key={antique.id}
-                      item={antique}
-                      onMobile={onMobile}
-                      />
-                  )))
-                )
-              }
-            </AntiqueGalleryWrapper>
-  );
+              {antiques.map((antique) => (
+                  <AntiqueGalleryItem
+                  key={antique.id}
+                  item={antique}
+                  onMobile={onMobile}
+                  />
+              ))}
+        </AntiqueGalleryWrapper>
+      )
+  )
 }
