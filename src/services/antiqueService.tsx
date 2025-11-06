@@ -3,7 +3,7 @@ import { type Antique } from "./models/antique";
 
 const BASE_URL : string = import.meta.env.VITE_ANTIQUE_API_BASE_URL;
 console.log("BASE_URL:", BASE_URL);
-const ANTIQUE_ENDPOINTS = 'antique/';
+const ANTIQUE_ENDPOINTS = 'antiques/';
 
 const apiClient = axios.create({
     baseURL: BASE_URL,
