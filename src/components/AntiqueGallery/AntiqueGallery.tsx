@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { AntiqueGalleryItem } from './AntiqueGalleryItem';
 import { AntiqueGallerySkeleton } from "./AntiqueGallerySkeleton";
+import { AntiqueGalleryError } from "./AntiqueGalleryError";
 
 const SKELETON_COUNT = 8;
 
@@ -40,7 +41,7 @@ export default function AntiqueGallery( ) {
                       <AntiqueGallerySkeleton key={idx} />
                     ))
                   ) : (
-                  // error? <p>Error fetching posts.</p> : (
+                  error? <AntiqueGalleryError /> : (
                   antiques.map((antique) => (
                       <AntiqueGalleryItem
                       key={antique.id}
@@ -48,7 +49,7 @@ export default function AntiqueGallery( ) {
                       onMobile={onMobile}
                       />
                   )))
-                // )
+                )
               }
             </AntiqueGalleryWrapper>
   );
