@@ -10,13 +10,21 @@ import theme from './theme/index';
 import Home from './routes/home';
 import ROUTES from './common/routes';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import Gallery from './routes/children/gallery'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; 
 
 const router = createBrowserRouter([
   {
     path: ROUTES.root,
     element: <Home />,
-    errorElement: <ErrorPage/>
+    errorElement: <ErrorPage/>,
+    children: [
+      { index: true, element: <Gallery /> }
+    // {
+    //   path: "/antiqued/:Id",
+    //   element: <></>
+    // },
+    ]
   }
 ]);
 
