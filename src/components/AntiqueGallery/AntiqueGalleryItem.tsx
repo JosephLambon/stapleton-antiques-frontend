@@ -22,10 +22,8 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
     timeout={CONSTANTS.FADE_TIMEOUT}
     in={isVisible}
     >
-      <Box ref={containerRef}
-      sx={{backgroundColor: 'transparent' }}>
+      <Box ref={containerRef}>
         <GalleryCard
-        sx={{backgroundColor: 'transparent'}}
         isVisible={isVisible}>
           <img
             srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}

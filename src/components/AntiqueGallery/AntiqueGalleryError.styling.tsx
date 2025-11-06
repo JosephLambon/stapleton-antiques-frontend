@@ -16,8 +16,8 @@ export const AntiqueGalleryErrorWrapper = styled(Box)<BoxProps>(() => ({
 
 export const ErrorMessageWrapper = styled(Box)<BoxProps>(() => ({
     padding: '32px',
-    borderRadius: '1%',
-    backgroundColor: 'rgba(255, 0, 0, 0.05)'
+    borderRadius: '2%',
+    backgroundColor: 'rgba(255, 0, 0, 0.4)'
 }));
 
 export const ErrorMessage = styled(Box)<BoxProps>(() => ({

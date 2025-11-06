@@ -10,5 +10,5 @@ export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({}) => 
 }))
 
 export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main
 }))
