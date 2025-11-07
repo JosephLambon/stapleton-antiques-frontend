@@ -2,7 +2,6 @@ import axios from "axios";
 import { type Antique } from "./models/antique";
 
 const BASE_URL : string = import.meta.env.VITE_ANTIQUE_API_BASE_URL;
-console.log("BASE_URL:", BASE_URL);
 const ANTIQUE_ENDPOINTS = 'antiques/';
 
 const apiClient = axios.create({
@@ -20,7 +19,6 @@ const GetAntiquesByStatus = async (
     const response =  await apiClient.get(
         `${ANTIQUE_ENDPOINTS}?includeAvailable=${includeAvailable}&includeSold=${includeSold}&includeArchived=${includeArchived}`
     ).then((response) => response.data)
-    console.log("Antiques response:", response)
     return response;
 };
 
