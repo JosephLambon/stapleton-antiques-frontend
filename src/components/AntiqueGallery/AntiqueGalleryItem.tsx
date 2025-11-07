@@ -3,6 +3,7 @@ import { GalleryCard, CaptionComputer } from "./AntiqueGallery.styling";
 import useOnScreen from "../../hooks/useOnScreen";
 import CONSTANTS from "../../common/constants";
 import type { Antique } from "../../services/models/antique";
+import { useNavigate } from "react-router-dom";
 
 interface GalleryItemProps {
   item: Antique;
@@ -15,6 +16,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
     rootMargin: "0px 0px 0px 0px",
     threshold: onMobile ? CONSTANTS.MOBILE.SCREEN_THRESHOLD : CONSTANTS.LARGER_SCREENS.SCREEN_THRESHOLD
   });
+  const navigate = useNavigate();
 
   return (
     <Fade
@@ -25,22 +27,16 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
       <Box ref={containerRef}>
         <GalleryCard
         isVisible={isVisible}
-        sx={{
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '1%',
-          '& img': {
-            display: 'block',
-            width: '100%',
-            height: 'auto',
-            borderRadius: 'inherit',
-          },
+        onClick={() => 
+          navigate(`/antique/${item.id}`)
+        }
+        sx={{ // Vignette
           '&::after': {
-            content: '""',
+            content: '""',  
             position: 'absolute',
             inset: 0,
             background:
-              'radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%)',
+              'radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%)',
             pointerEvents: 'none',
           }
         }}>
