@@ -9,22 +9,36 @@ import { CssBaseline } from '@mui/material';
 import theme from './theme/index';
 import Home from './routes/home';
 import ROUTES from './common/routes';
+import Gallery from './routes/children/gallery'
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import AntiqueDetails from './components/AntiqueDetails/AntiqueDetails';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; 
 
 const router = createBrowserRouter([
   {
     path: ROUTES.root,
     element: <Home />,
-    errorElement: <ErrorPage/>
+    errorElement: <ErrorPage/>,
+    children: [
+      { index: true, element: <Gallery /> },
+      {
+        path: `${ROUTES.antique}/:id`,
+        element: <AntiqueDetails/>
+      },
+    ]
   }
 ]);
 
+const queryClient = new QueryClient();
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient} >
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )
 

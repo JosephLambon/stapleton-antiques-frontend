@@ -26,7 +26,7 @@ function NavigationBar() {
   const closeDrawer = () => setDrawerOpen(false);
 
   return (
-    <AppBar position='relative'>
+    <AppBar position='sticky'>
       <Container disableGutters={onMobile ? true : false} maxWidth="lg">
         <Toolbar sx={{
           display: 'grid',
@@ -39,7 +39,7 @@ function NavigationBar() {
                 <LogoMobile
                   variant="h3"
                   noWrap
-                  to="/tester"
+                  to="/"
                 >
                 {CONSTANTS.COMPANY_NAME}
                 </LogoMobile>
@@ -63,7 +63,7 @@ function NavigationBar() {
               <LogoComputer
                 variant="h4"
                 noWrap
-                to='/pctest'
+                to='/'
               >
                 {CONSTANTS.COMPANY_NAME}
               </LogoComputer>

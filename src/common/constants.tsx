@@ -4,14 +4,15 @@ export const CONSTANTS = {
     
     MOBILE: {
         GALLERY_COLUMNS: 2,
-        GALLERY_GAP: 5,
-        SCREEN_THRESHOLD: 0.6
+        GALLERY_GAP: 4,
+        SCREEN_THRESHOLD: 0.6,
+        SKELETON_COUNT: 8
     },
-    
     LARGER_SCREENS: {
         GALLERY_COLUMNS: 3,
-        GALLERY_GAP: 10,
-        SCREEN_THRESHOLD: 0.2
+        GALLERY_GAP: 16,
+        SCREEN_THRESHOLD: 0.2,
+        SKELETON_COUNT: 9
     }
 } as const;
 

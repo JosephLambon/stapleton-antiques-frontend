@@ -1,7 +1,7 @@
 export const ROUTES = {
     root: "/",
     contact: "/contact",
-    sold: "/sold"
+    antique: "/antique"
 } as const;
 
 export type RouteKey = keyof typeof ROUTES; // "root" | "about" | "contact"
