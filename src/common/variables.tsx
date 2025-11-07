@@ -10,10 +10,6 @@ export const pages = [
         title : 'For Sale',
         link: ROUTES.root
     },
-    {
-        title: 'Sold',
-        link: ROUTES.sold
-    },
     { 
         title: 'Contact',
         link: ROUTES.contact

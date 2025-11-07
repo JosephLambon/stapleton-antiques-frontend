@@ -4,7 +4,7 @@ import {
 import { Skeleton, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CONSTANTS from '../../common/constants';
-import { GetAntiquesByStatus } from '../../services/AntiqueService';
+import { GetAntiquesByStatus } from '../../services/antiqueService';
 import { useQuery } from "@tanstack/react-query";
 
 import { AntiqueGalleryItem } from './AntiqueGalleryItem';
