@@ -36,7 +36,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
             position: 'absolute',
             inset: 0,
             background:
-              'radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%)',
+              'radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.8) 100%)',
             pointerEvents: 'none',
           }
         }}>
