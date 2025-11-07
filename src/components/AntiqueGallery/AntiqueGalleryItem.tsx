@@ -1,4 +1,4 @@
-import { Fade, Box, ImageListItemBar } from "@mui/material";
+import { Fade, Box } from "@mui/material";
 import { GalleryCard, CaptionComputer } from "./AntiqueGallery.styling";
 import useOnScreen from "../../hooks/useOnScreen";
 import CONSTANTS from "../../common/constants";

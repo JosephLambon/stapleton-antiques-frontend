@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { AntiqueGalleryErrorWrapper, ErrorMessageWrapper, ErrorMessage } from './AntiqueGalleryError.styling'
 
 export function AntiqueGalleryError() {

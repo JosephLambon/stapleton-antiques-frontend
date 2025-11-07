@@ -1,7 +1,5 @@
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box, { type BoxProps } from '@mui/material/Box';
-import ImageListItem, { type ImageListItemProps } from '@mui/material/ImageListItem';
-import ImageListItemBar, { type ImageListItemBarProps } from '@mui/material/ImageListItemBar';
 
 export const AntiqueGalleryErrorWrapper = styled(Box)<BoxProps>(() => ({
     display: 'flex',
