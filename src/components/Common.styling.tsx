@@ -17,6 +17,6 @@ export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
     backgroundColor: theme.palette.primary.main
 }))
 
-export const OutletContainer = styled(Container)<ContainerProps>(({theme}) => ({
+export const OutletContainer = styled(Container)<ContainerProps>(() => ({
     flex: '1 0 auto' // fills available space (so footer pins to bottom)
 }))
