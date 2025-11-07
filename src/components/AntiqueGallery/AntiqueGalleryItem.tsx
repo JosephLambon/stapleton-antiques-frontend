@@ -24,7 +24,26 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
     >
       <Box ref={containerRef}>
         <GalleryCard
-        isVisible={isVisible}>
+        isVisible={isVisible}
+        sx={{
+          position: 'relative',
+          overflow: 'hidden',
+          borderRadius: '1%',
+          '& img': {
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            borderRadius: 'inherit',
+          },
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            inset: 0,
+            background:
+              'radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%)',
+            pointerEvents: 'none',
+          }
+        }}>
           <img
             srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
             src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format`}

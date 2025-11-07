@@ -1,18 +1,17 @@
-import { antiqueItemData as antiques } from '../../common/variables';
 import { 
     AntiqueGalleryWrapper,
 } from '../AntiqueGallery/AntiqueGallery.styling';
 import { Skeleton, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CONSTANTS from '../../common/constants';
-import { GetAntiquesByStatus } from '../../services/antiqueService';
+import { GetAntiquesByStatus } from '../../services/AntiqueService';
 import { useQuery } from "@tanstack/react-query";
 
 import { AntiqueGalleryItem } from './AntiqueGalleryItem';
 import { AntiqueGallerySkeleton } from "./AntiqueGallerySkeleton";
 import { AntiqueGalleryError } from "./AntiqueGalleryError";
 
-export default function AntiqueGallery( ) {
+export default function AntiqueGallery() {
     const theme = useTheme();
     const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
 

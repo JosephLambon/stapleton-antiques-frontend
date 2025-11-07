@@ -7,17 +7,6 @@ function Gallery() {
   return (
       <>
           <AntiqueGallery />
-          <Typography 
-          sx={{
-            p: 5,
-            m: 3, 
-            textAlign: 'center',
-            fontSize:'48px', 
-            color: theme.palette.text.secondary
-          }}
-            >
-            Footer placeholder
-          </Typography>
         </>
   )
 }
