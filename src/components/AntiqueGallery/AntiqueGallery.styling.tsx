@@ -23,7 +23,7 @@ export const GalleryCard = styled(ImageListItem, {
     overflow: 'hidden',
     transform: isVisible ? 'translateY(0)' : 'translateY(5%)',
     transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
-    boxShadow: 'rgba(0, 0, 0, 0.5) 0px 8px 24px;',
+    boxShadow: 'rgba(0, 0, 0, 0.5) 0px 8px 24px;'
 }));
 
 export const CaptionComputer = styled(ImageListItemBar)<ImageListItemBarProps>(({theme}) =>({

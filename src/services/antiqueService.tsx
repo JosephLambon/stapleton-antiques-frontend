@@ -22,4 +22,14 @@ const GetAntiquesByStatus = async (
     return response;
 };
 
-export { GetAntiquesByStatus }
+const GetAntiqueById = async (
+    id : number
+) : Promise<Antique> => {
+    const response =  await apiClient.get(
+        `${ANTIQUE_ENDPOINTS}${id}`
+    ).then((response) => response.data)
+    return response;
+};
+
+
+export { GetAntiquesByStatus, GetAntiqueById }

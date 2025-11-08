@@ -12,7 +12,8 @@ import ROUTES from './common/routes';
 import Gallery from './routes/children/gallery'
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import AntiqueDetails from './components/AntiqueDetails/AntiqueDetails';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { loader as detailsLoader } from './components/AntiqueDetails/AntiqueDetails'
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,9 @@ const router = createBrowserRouter([
       { index: true, element: <Gallery /> },
       {
         path: `${ROUTES.antique}/:id`,
-        element: <AntiqueDetails/>
-      },
+        element: <AntiqueDetails/>,
+        loader: detailsLoader
+      }
     ]
   }
 ]);
