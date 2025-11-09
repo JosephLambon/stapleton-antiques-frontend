@@ -1,6 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Box from '@mui/material/Box';
+import './carousel.css';
 
 // docs: https://www.npmjs.com/package/react-multi-carousel
 
@@ -12,10 +13,12 @@ function ImageCarousel({images} : ImageCarouselProps)
 {
     return (
         <Box sx={{
-            borderRadius: '30px',
-            overflow: 'hidden',
-            boxShadow: 'rgba(0, 0, 0, 0.5) 0px 8px 24px;',
-            maxHeight:'100%',
+            width: '50vw', // Change for mobile/desktop
+            my: 5,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+            , position: 'relative' // Moves dots to below carousel
+            , paddingBottom: '30px' // distance dots to image
         }}>
             <Carousel
             additionalTransfrom={0}

@@ -22,9 +22,7 @@ function AntiqueDetails() {
             <Typography variant='h1' sx={{textAlign: 'center', mt: 3}}>
                  {antique.name}
             </Typography>
-            <Box sx={{mb: 5, py: 5}}>
-                <ImageCarousel images={antique.images} />
-            </Box>
+            <ImageCarousel images={antique.images} />
         </>
     )
 }
