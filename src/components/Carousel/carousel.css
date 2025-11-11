@@ -19,3 +19,13 @@
   object-fit: cover;
   display: block;
 }
+
+.react-multi-carousel-dot-list {
+  width: 60%;
+}
+
+@media (max-width: 600px) {
+  .react-multi-carousel-dot-list {
+    width: 100%;
+  }
+}

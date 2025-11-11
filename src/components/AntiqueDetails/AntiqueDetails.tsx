@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { GetAntiqueById } from '../../services/antiqueService';
 import { useLoaderData } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
@@ -16,13 +16,55 @@ export async function loader({ params }) {
 
 function AntiqueDetails() {
     const { antique } = useLoaderData();
+    const theme = useTheme();
+    const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const formattedPrice = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
+      antique.price,
+    )
+
+    
     return (
         <>
-            <Typography variant='h1' sx={{textAlign: 'center', mt: 3}}>
-                 {antique.name}
-            </Typography>
-            <ImageCarousel images={antique.images} />
+            {onMobile ? (
+              <>
+                <Typography variant='h2' sx={{textAlign: 'center', mt: 3}}>
+                  {antique.name}
+                </Typography>
+                <Box sx={{
+                  width: '100%', // Change for mobile/desktop
+                my: 5,
+                marginLeft: 'auto',
+                marginRight: 'auto'
+                , position: 'relative' // Moves dots to below carousel
+                , paddingBottom: '30px' // distance dots to image
+                }}>
+                    <ImageCarousel images={antique.images} />
+                </Box>
+              </>
+              ) : (
+                  <Box sx={{
+                    my: 5,
+                    display: 'grid',
+                    gridTemplateAreas: 'carousel-left details-right',
+                    gridTemplateColumns: '4fr 2fr', // 60% to 40% ratio 
+                    gridAutoRows: 'minmax(100px, auto)' // flexible row
+                      , position: 'relative' // Moves dots to below carousel
+                      , paddingBottom: '30px' // distance dots to image
+                      , paddingRight: '50px' // distance dots to image
+                  }}>
+                      <ImageCarousel images={antique.images} />
+                      <Box sx={{
+                        px: 5
+                      }}>
+                          <Typography sx={{my:1}} variant='h4'><b>{antique.name}</b></Typography>
+                          <Typography sx={{mt:1}} variant='h4'><b>{formattedPrice}</b></Typography>
+                          <Typography sx={{ mb: 2, color: theme.palette.text.secondary}} variant='h6'><b>or best offer</b></Typography>
+                          <Typography sx={{lineHeight: 1.5}}>{antique.description}</Typography>
+                      </Box>
+                  </Box>
+              )
+            }
         </>
     )
 }
