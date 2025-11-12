@@ -16,7 +16,7 @@ function LinkBehaviour(props: LinkBehaviourProps) {
 }
 
 export interface NavigationLinkProps extends TypographyProps {
-    to: string;
+    to?: string;
     children: React.ReactNode;
     ref?: React.Ref<HTMLAnchorElement>;
 }

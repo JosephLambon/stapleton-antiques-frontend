@@ -51,6 +51,7 @@ function AntiqueDetails() {
                 </Box>
                 <Box sx={{
                         px: 0,
+                        my: 1,
                         textAlign: 'left'
                       }}>
                   <Typography sx={{mb:1}} variant='h4'><b>{antique.name}</b></Typography>
