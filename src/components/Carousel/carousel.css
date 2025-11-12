@@ -19,13 +19,21 @@
   object-fit: cover;
   display: block;
 }
+.react-multi-carousel-dot button {
+    border-width: 1px;
+    /* border-color: grey; */
+}
+
+.react-multi-carousel-dot--active button {
+    background: #08080800; /* transparent */
+}
 
 .react-multi-carousel-dot-list {
-  width: 60%;
+  width: 60%; /* moves dots on large screens to fit grid space*/
 }
 
 @media (max-width: 600px) {
   .react-multi-carousel-dot-list {
-    width: 100%;
+    width: 100%; /* moves dots on mobile to center */
   }
 }

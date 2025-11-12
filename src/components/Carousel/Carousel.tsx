@@ -1,6 +1,5 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Box from '@mui/material/Box';
 import './carousel.css';
 import { useMediaQuery, useTheme } from '@mui/material';
 
@@ -21,12 +20,13 @@ function ImageCarousel({images} : ImageCarouselProps)
         additionalTransfrom={0}
         showDots={true}
         arrows={onMobile ? false : true}
-        autoPlaySpeed={3000}
+        autoPlay={false}
+        autoPlaySpeed={5000}
         centerMode={false}
         dotListClass=""
         draggable
         focusOnSelect={false}
-        infinite
+        infinite={true}
         keyBoardControl
         minimumTouchDrag={80}
         pauseOnHover
@@ -63,15 +63,15 @@ function ImageCarousel({images} : ImageCarouselProps)
         slidesToSlide={1}
         swipeable
         >
-            {images.map((image, index) => (
-                <img key={index}
-                    draggable="false"
-                    srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
-                    src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
-                    alt={image}
-                    loading="lazy"
-                />
-            ))}
+                {images.map((image, index) => (
+                    <img key={index}
+                        draggable="false"
+                        srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
+                        src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
+                        alt={image}
+                        loading="lazy"
+                    />
+                ))}
         </Carousel>
     )
 }

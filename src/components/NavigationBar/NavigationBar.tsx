@@ -15,6 +15,7 @@ import { pages } from '../../common/variables';
 
 import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper } from './NavigationBar.styling';
 import { AppBarButton } from '../Common.styling';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 function NavigationBar() {
   const theme = useTheme();
@@ -68,7 +69,7 @@ function NavigationBar() {
                 {CONSTANTS.COMPANY_NAME}
               </LogoComputer>
               <NavigationItemWrapper>
-                <Stack direction="row" spacing={2} margin={1}>
+                <Stack direction="row" sx={{alignItems: 'center'}} spacing={4} margin={1}>
                   {pages.map((page) => (
                     <AppBarButton
                     variant='h6'
@@ -78,6 +79,7 @@ function NavigationBar() {
                       {page.title}
                     </AppBarButton>
                   ))}
+                  <InstagramIcon onClick={() => window.open("https://www.instagram.com/stapletonantiques/")} />
                 </Stack>
               </NavigationItemWrapper>
             </>
