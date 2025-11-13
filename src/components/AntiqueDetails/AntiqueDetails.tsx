@@ -64,7 +64,6 @@ function AntiqueDetails() {
                   <Box sx={{
                     my: 5,
                     display: 'grid',
-                    gridTemplateAreas: 'carousel-left details-right',
                     gridTemplateColumns: '4fr 2fr', // 60% to 40% ratio 
                     gridAutoRows: 'minmax(100px, auto)' // flexible row
                       , position: 'relative' // Moves dots to below carousel
@@ -73,7 +72,7 @@ function AntiqueDetails() {
                   }}>
                       <ImageCarousel images={antique.images} />
                       <Box sx={{
-                        px: 5
+                        px: 5,
                       }}>
                           <Typography sx={{my:1}} variant='h4'><b>{antique.name}</b></Typography>
                           <Typography sx={{mt:1}} variant='h4'><b>{formattedPrice}</b></Typography>

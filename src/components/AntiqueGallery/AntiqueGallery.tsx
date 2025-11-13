@@ -21,7 +21,7 @@ export default function AntiqueGallery() {
           isLoading,
         } = useQuery({
           queryKey: ["antiquesData"],
-          queryFn: () => GetAntiquesByStatus(true,true,true),
+          queryFn: () => GetAntiquesByStatus(true,false,false),
           gcTime: 60 * 60 * 1000,          // Bin cache after 5 mins,
           staleTime: 30 * 60 * 1000        // Data considered stale after 30 min, will refetch & update cache in background
       });
@@ -31,7 +31,7 @@ export default function AntiqueGallery() {
         <AntiqueGalleryWrapper
         cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
         gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
-        rowHeight={300}
+        rowHeight={240}
         >
           {Array.from({ length: onMobile ? CONSTANTS.MOBILE.SKELETON_COUNT : CONSTANTS.LARGER_SCREENS.SKELETON_COUNT }).map((_, idx) => (
             <AntiqueGallerySkeleton key={idx} />
