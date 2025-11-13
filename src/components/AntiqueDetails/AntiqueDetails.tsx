@@ -1,11 +1,15 @@
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { GetAntiqueById } from '../../services/antiqueService';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, type LoaderFunctionArgs } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export async function loader({ params }) {
-  const antique = await GetAntiqueById(params.id);
+interface AntiqueLoaderParams {
+  id: string;
+}
+
+export async function loader({ params }: LoaderFunctionArgs<AntiqueLoaderParams>) {
+  const antique = await GetAntiqueById(Number(params.id));
   if (!antique) {
     throw new Response("", {
       status: 404,
