@@ -71,6 +71,10 @@ function ImageCarousel({images} : ImageCarouselProps)
                         src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
                         alt={image}
                         loading="lazy"
+                        style={{
+                            borderRadius: '5px',
+                            overflow: 'hidden'
+                        }}
                     />
                 ))}
         </Carousel>
