@@ -23,16 +23,17 @@ function ImageCarousel({images} : ImageCarouselProps)
         autoPlay={false}
         autoPlaySpeed={5000}
         centerMode={false}
+        containerClass=""
         dotListClass=""
         draggable
         focusOnSelect={false}
         infinite={true}
-        keyBoardControl
+        keyBoardControl={true}
         minimumTouchDrag={80}
         pauseOnHover
         renderArrowsWhenDisabled={false}
         renderButtonGroupOutside={false}
-        renderDotsOutside={true}
+        renderDotsOutside={onMobile? true : false}
         responsive={{
             desktop: {
                 breakpoint: {
@@ -56,7 +57,7 @@ function ImageCarousel({images} : ImageCarouselProps)
                 items: 1
             },
         }}
-        rewind={true}
+        rewind={false}
         rewindWithAnimation={false}
         rtl={false}
         shouldResetAutoplay

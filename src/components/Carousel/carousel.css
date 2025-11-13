@@ -28,10 +28,6 @@
     background: #08080800; /* transparent */
 }
 
-.react-multi-carousel-dot-list {
-  width: 60%; /* moves dots on large screens to fit grid space*/
-}
-
 @media (max-width: 600px) {
   .react-multi-carousel-dot-list {
     width: 100%; /* moves dots on mobile to center */

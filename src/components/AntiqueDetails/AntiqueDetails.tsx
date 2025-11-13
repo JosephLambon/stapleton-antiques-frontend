@@ -3,6 +3,7 @@ import { GetAntiqueById } from '../../services/antiqueService';
 import { useLoaderData, useNavigate, type LoaderFunctionArgs } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useEffect } from 'react';
 
 interface AntiqueLoaderParams {
   id: string;
@@ -25,10 +26,16 @@ function AntiqueDetails() {
   const navigate = useNavigate();
   const theme = useTheme();
   const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
+  
+    useEffect(() => {
+        // Scroll the window to the top whenever the pathname changes
+        window.scrollTo(0, 0);
+      }, []);
     const formattedPrice = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
       antique.price,
     )
+
+    
 
     
     return (
@@ -70,9 +77,10 @@ function AntiqueDetails() {
                     display: 'grid',
                     gridTemplateColumns: '4fr 2fr', // 60% to 40% ratio 
                     gridAutoRows: 'minmax(100px, auto)' // flexible row
-                      , position: 'relative' // Moves dots to below carousel
-                      , paddingBottom: '30px' // distance dots to image
-                      , paddingRight: '50px' // distance dots to image
+                  , position: 'relative' // Moves dots to below carousel
+                  , paddingBottom: '30px' // distance dots to image
+                  , paddingRight: '50px' // distance dots to image
+                  , alignItems: 'start'
                   }}>
                       <ImageCarousel images={antique.images} />
                       <Box sx={{
