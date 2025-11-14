@@ -54,7 +54,7 @@ export const components : ThemeOptions["components"] = {
       styleOverrides: {
         root: {
           textTransform: 'none'
-        },
+        }
       },
     }
 };
