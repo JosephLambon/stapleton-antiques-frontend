@@ -18,6 +18,7 @@ function ImageCarousel({images} : ImageCarouselProps)
     return (
         <Carousel
         additionalTransfrom={0}
+        customTransition="all .3s ease-in-out" // duration of slide animation
         showDots={true}
         arrows={onMobile ? false : true}
         autoPlay={false}
@@ -29,7 +30,7 @@ function ImageCarousel({images} : ImageCarouselProps)
         focusOnSelect={false}
         infinite={true}
         keyBoardControl={true}
-        minimumTouchDrag={80}
+        minimumTouchDrag={50}
         pauseOnHover
         renderArrowsWhenDisabled={false}
         renderButtonGroupOutside={false}

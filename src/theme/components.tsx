@@ -44,8 +44,8 @@ export const components : ThemeOptions["components"] = {
     MuiDrawer: {
       styleOverrides: {
         paper: ({ theme }) => ({
-          backgroundColor: theme.palette.secondary.main,
-          color: theme.palette.getContrastText(theme.palette.secondary.main),
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.getContrastText(theme.palette.primary.main),
           width: 250
         }),
       },

@@ -1,11 +1,12 @@
-import { Box, Button, Typography, useMediaQuery, useTheme, type TypographyProps } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { GetAntiqueById } from '../../services/antiqueService';
-import { useLoaderData, useNavigate, type LoaderFunctionArgs } from 'react-router-dom';
+import { useLoaderData, type LoaderFunctionArgs } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect } from 'react';
-import { MuiMarkdown } from 'mui-markdown';
 import type { Antique } from '../../services/models/antique';
+import NavigateBack from './NavigateBack';
+import { CarouselWrapperMobile, GridWrapperDesktop } from './AntiqueDetails.styling';
+import ExpandableMarkdown from './ExpandableMarkdown';
 
 interface AntiqueLoaderParams {
   id: string;
@@ -25,14 +26,14 @@ export async function loader({ params }: LoaderFunctionArgs<AntiqueLoaderParams>
 
 
 function AntiqueDetails() {
-  const { antique } : { antique : Antique } = useLoaderData();
-  const navigate = useNavigate();
   const theme = useTheme();
   const onMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  const { antique } : { antique : Antique } = useLoaderData();
 
   const toEmail: string = "joe.lambon25@gmail.com";
-  const subject: string = encodeURIComponent(`Inquiry regarding ${antique.name}`);
-  const body: string = encodeURIComponent(`Hi,\n\nAntique:  '${antique.name}'. \n\n`);
+  const subject: string = encodeURIComponent(`Enquiry - ${antique.name}`);
+  const body: string = encodeURIComponent(`Hi,\n\nI would like to enquire about your listing '${antique.name}' (#${antique.id}). \n\n`);
   
     useEffect(() => {
         // Scroll the window to the top whenever the pathname changes
@@ -41,16 +42,6 @@ function AntiqueDetails() {
     const formattedPrice = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
       antique.price,
     )
-    const markdownOverrides = {
-      p: {
-        component: Typography as TypographyProps,
-        props: { variant: "body1", paragraph: true, sx: { mb: 3 } }
-      },
-      ul: {
-        component: 'ul' as any,
-        props: { style: { marginBottom: '24px' } }
-      }
-    } as any;
     
     return (
         <>
@@ -61,24 +52,10 @@ function AntiqueDetails() {
                 minHeight: '85dvh',
                 my: 1
               }}>
-                <Typography 
-                variant='body1'
-                sx={{display: 'flex', justifyContent:'left', alignItems: 'center', my:2}}
-                onClick={() => 
-                    navigate(-1)
-                }
-                >
-                  <ArrowBackIcon sx={{mr:1}} />
-                  {antique.name}
-                </Typography>
-                <Box sx={{
-                  width: '100%',
-                  mt: 0,
-                  position: 'relative', // Moves dots to below carousel
-                  paddingBottom: '30px' // distance dots to image
-                }}>
+                <NavigateBack label={antique.name} />
+                <CarouselWrapperMobile>
                     <ImageCarousel images={antique.images} />
-                </Box>
+                </CarouselWrapperMobile>
                 <Box sx={{
                         px: 0,
                         my: 1,
@@ -92,7 +69,7 @@ function AntiqueDetails() {
                   <Typography sx={{ mb: 2, color: theme.palette.text.secondary}} variant='h6'>
                     <b>or best offer</b>
                   </Typography>
-                  <MuiMarkdown overrides={markdownOverrides}>{antique.description}</MuiMarkdown>
+                  <ExpandableMarkdown description={antique.description} />
                 </Box>
                 <Box sx={{ flexGrow: 1 }} />
                   <Button onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`} sx={{width: '100%', alignSelf: 'flex-end', my: 2}} size='large' variant='contained' color="secondary">
@@ -101,31 +78,8 @@ function AntiqueDetails() {
               </Box>
               ) : (
                 <>
-                  <Typography 
-                  variant='body1'
-                  sx={{
-                    display: 'flex',
-                    justifyContent:'left',
-                    alignItems: 'center',
-                    my:2,
-                    cursor: 'pointer'}}
-                  onClick={() => 
-                      navigate(-1)
-                  }
-                  >
-                    <ArrowBackIcon sx={{mr:1}} />
-                    {antique.name}
-                  </Typography>
-                  <Box sx={{
-                    // my: 5,
-                    display: 'grid',
-                    gridTemplateColumns: '4fr 2fr', // 60% to 40% ratio 
-                    gridAutoRows: 'minmax(100px, auto)' // flexible row
-                  , position: 'relative' // Moves dots to below carousel
-                  , paddingBottom: '30px' // distance dots to image
-                  , paddingRight: '50px' // distance dots to image
-                  , alignItems: 'start'
-                  }}>
+                  <NavigateBack label={antique.name} />
+                  <GridWrapperDesktop >
                       <ImageCarousel images={antique.images} />
                       <Box sx={{
                         px: 5,
@@ -144,10 +98,10 @@ function AntiqueDetails() {
                                 Enquire
                               </Button>
                           </Box>
-                          <MuiMarkdown overrides={markdownOverrides}>{antique.description}</MuiMarkdown>
+                          <ExpandableMarkdown description={antique.description} />
                       </Box>
-                  </Box>
-                  </>
+                  </GridWrapperDesktop>
+                </>
               )
             }
         </>

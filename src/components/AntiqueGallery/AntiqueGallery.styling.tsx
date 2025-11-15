@@ -15,7 +15,7 @@ export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(() => ({
 
 export const GalleryCard = styled(ImageListItem, {
   shouldForwardProp: (prop) => prop !== "isVisible"
-})<AntiqueGalleryItemProps>(({ isVisible}) => ({
+})<AntiqueGalleryItemProps>(({isVisible}) => ({
     '&:hover': {
         cursor: 'pointer',
     },
