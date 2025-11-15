@@ -1,10 +1,11 @@
-import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery, useTheme, type TypographyProps } from '@mui/material';
 import { GetAntiqueById } from '../../services/antiqueService';
 import { useLoaderData, useNavigate, type LoaderFunctionArgs } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect } from 'react';
 import { MuiMarkdown } from 'mui-markdown';
+import type { Antique } from '../../services/models/antique';
 
 interface AntiqueLoaderParams {
   id: string;
@@ -24,14 +25,14 @@ export async function loader({ params }: LoaderFunctionArgs<AntiqueLoaderParams>
 
 
 function AntiqueDetails() {
-  const { antique } = useLoaderData();
+  const { antique } : { antique : Antique } = useLoaderData();
   const navigate = useNavigate();
   const theme = useTheme();
-  const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const onMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const toEmail = "joe.lambon25@gmail.com";
-  const subject = encodeURIComponent(`Inquiry regarding ${antique.name}`);
-  const body = encodeURIComponent(`Hi,\n\nAntique:  '${antique.name}'. \n\n`);
+  const toEmail: string = "joe.lambon25@gmail.com";
+  const subject: string = encodeURIComponent(`Inquiry regarding ${antique.name}`);
+  const body: string = encodeURIComponent(`Hi,\n\nAntique:  '${antique.name}'. \n\n`);
   
     useEffect(() => {
         // Scroll the window to the top whenever the pathname changes
@@ -42,14 +43,14 @@ function AntiqueDetails() {
     )
     const markdownOverrides = {
       p: {
-        component: Typography,
+        component: Typography as TypographyProps,
         props: { variant: "body1", paragraph: true, sx: { mb: 3 } }
       },
       ul: {
-        component: 'ul',
+        component: 'ul' as any,
         props: { style: { marginBottom: '24px' } }
       }
-    };
+    } as any;
     
     return (
         <>
