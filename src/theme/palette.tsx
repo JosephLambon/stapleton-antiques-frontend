@@ -6,7 +6,7 @@ export const palette : ThemeOptions["palette"] = {
     },
     secondary: {
         // main: 'rgb(251, 249, 249)'
-        main: 'rgba(4, 17, 78, 1)'
+        main: 'rgba(251, 249, 249, 1)'
     },
     text: {
         // primary: 'rgba(0, 0, 0, 0.87)',
@@ -14,7 +14,7 @@ export const palette : ThemeOptions["palette"] = {
         // disabled: 'rgba(0, 0, 0, 0.38)'
         
         primary: 'rgba(251, 249, 249, 1)',
-        secondary: 'rgba(251, 249, 249, 1)',
+        secondary: 'rgba(251, 249, 249, 0.6)',
         disabled: 'rgb(251, 249, 249)'
     }
 };

@@ -11,12 +11,12 @@ export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({}) => 
 }))
 
 export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
-    minHeight: '100vh',
+    minHeight: '100dvh',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: theme.palette.primary.main
 }))
 
 export const OutletContainer = styled(Container)<ContainerProps>(() => ({
-    flex: '1 0 auto' // fills available space (so footer pins to bottom)
+    flex: '1 0 auto'
 }))

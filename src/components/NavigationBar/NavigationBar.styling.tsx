@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Box, { type BoxProps } from '@mui/material/Box';
-import { NavigationLink, type NavigationLinkProps } from '../Common';
+import { NavigationLink, type NavigationLinkProps } from '../Common/Common';
 
 export const LogoMobile = styled(NavigationLink)<NavigationLinkProps>(() => ({
     gridArea: 'middle',
