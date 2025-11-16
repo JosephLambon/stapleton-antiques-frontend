@@ -1,4 +1,4 @@
-import { Button, Typography, type TypographyProps } from "@mui/material";
+import { Box, Button, Typography, type TypographyProps } from "@mui/material";
 import MuiMarkdown from "mui-markdown";
 import { useState } from "react";
 
@@ -23,7 +23,7 @@ function ExpandableMarkdown({description} : {description: string}) {
         {readMoreRequired ? (
             <>
                 {isExpanded ? (
-                <>
+                <Box>
                     <MuiMarkdown overrides={markdownOverrides}>
                         {description}
                     </MuiMarkdown>
@@ -35,9 +35,9 @@ function ExpandableMarkdown({description} : {description: string}) {
                     >
                         show less
                     </Button>
-                </>
+                </Box>
                 ) : (
-                <>
+                <Box>
                     <MuiMarkdown overrides={markdownOverrides}>
                         {collapsedDescription}
                     </MuiMarkdown>
@@ -49,7 +49,7 @@ function ExpandableMarkdown({description} : {description: string}) {
                     >
                         show more
                     </Button>
-                </>
+                </Box>
                 )}
             </>
             ) : (

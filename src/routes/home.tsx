@@ -1,7 +1,7 @@
-import { OutletContainer } from '../components/Common.styling';
+import { OutletContainer } from '../components/Common/Common.styling';
 import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { MainBackground } from '../components/Common.styling';
+import { MainBackground } from '../components/Common/Common.styling';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
 
 function Home() {

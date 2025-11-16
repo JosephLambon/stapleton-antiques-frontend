@@ -1,12 +1,12 @@
-import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { GetAntiqueById } from '../../services/antiqueService';
 import { useLoaderData, type LoaderFunctionArgs } from 'react-router-dom';
 import ImageCarousel from '../Carousel/Carousel';
 import { useEffect } from 'react';
 import type { Antique } from '../../services/models/antique';
-import NavigateBack from './NavigateBack';
-import { CarouselWrapperMobile, GridWrapperDesktop } from './AntiqueDetails.styling';
-import ExpandableMarkdown from './ExpandableMarkdown';
+import NavigateBack from '../Common/NavigateBack';
+import { CarouselWrapperMobile, FlexColumnWrapper, GridWrapperDesktop, ItemName, Price, OrBestOffer, InformationWrapper, EnquireButton, FlexGrowSpacer } from './AntiqueDetails.styling';
+import ExpandableMarkdown from '../Common/ExpandableMarkdown';
 
 interface AntiqueLoaderParams {
   id: string;
@@ -23,7 +23,6 @@ export async function loader({ params }: LoaderFunctionArgs<AntiqueLoaderParams>
   console.log(antique.description);
   return { antique };
 }
-
 
 function AntiqueDetails() {
   const theme = useTheme();
@@ -46,60 +45,52 @@ function AntiqueDetails() {
     return (
         <>
             {onMobile ? (
-              <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '85dvh',
-                my: 1
-              }}>
+              <FlexColumnWrapper>
                 <NavigateBack label={antique.name} />
                 <CarouselWrapperMobile>
-                    <ImageCarousel images={antique.images} />
+                  <ImageCarousel images={antique.images} />
                 </CarouselWrapperMobile>
-                <Box sx={{
-                        px: 0,
-                        my: 1,
-                        textAlign: 'left',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        flexGrow: 1
-                      }}>
-                  <Typography sx={{mb:1}} variant='h4'><b>{antique.name}</b></Typography>
-                  <Typography sx={{mt:1}} variant='h4'><b>{formattedPrice}</b></Typography>
-                  <Typography sx={{ mb: 2, color: theme.palette.text.secondary}} variant='h6'>
-                    <b>or best offer</b>
-                  </Typography>
+                <InformationWrapper onMobile={onMobile}>
+                  <ItemName variant='h4'><b>{antique.name}</b></ItemName>
+                  <Price variant='h4'><b>{formattedPrice}</b></Price>
+                  <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
+                  
                   <ExpandableMarkdown description={antique.description} />
-                </Box>
-                <Box sx={{ flexGrow: 1 }} />
-                  <Button onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`} sx={{width: '100%', alignSelf: 'flex-end', my: 2}} size='large' variant='contained' color="secondary">
-                    Enquire
-                  </Button>
-              </Box>
+                </InformationWrapper>
+                <FlexGrowSpacer />
+                <EnquireButton
+                onMobile={onMobile}
+                onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
+                size='large' 
+                variant='contained'
+                color="secondary"
+                >
+                  Enquire
+                </EnquireButton>
+              </FlexColumnWrapper>
               ) : (
                 <>
                   <NavigateBack label={antique.name} />
                   <GridWrapperDesktop >
-                      <ImageCarousel images={antique.images} />
-                      <Box sx={{
-                        px: 5,
-                      }}>
-                          <Typography sx={{my:1}} variant='h4'><b>{antique.name}</b></Typography>
-                            <Typography sx={{mt:1}} variant='h4'><b>{formattedPrice}</b></Typography>
-                            <Typography sx={{ mb: 2, color: theme.palette.text.secondary}} variant='h6'>
-                              <b>or best offer</b>
-                            </Typography>
-                          <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-                            <Button sx={{
-                              mb:4,
-                              width: '100%'
-                              }} size='medium' variant='contained' color="secondary"
-                              onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}>
-                                Enquire
-                              </Button>
-                          </Box>
-                          <ExpandableMarkdown description={antique.description} />
-                      </Box>
+                    <ImageCarousel images={antique.images} />
+                    <InformationWrapper onMobile={onMobile}>
+                      <ItemName variant='h4'><b>{antique.name}</b></ItemName>
+                      <Price variant='h4'><b>{formattedPrice}</b></Price>
+                      <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
+
+                      <EnquireButton
+                        onMobile={onMobile}
+                        size='medium'
+                        variant='contained'
+                        color="secondary"
+                        onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
+                      >
+                          Enquire
+                      </EnquireButton>
+
+                      <ExpandableMarkdown description={antique.description} />
+                      
+                    </InformationWrapper>
                   </GridWrapperDesktop>
                 </>
               )

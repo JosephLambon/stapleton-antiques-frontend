@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { pages } from '../../common/variables';
 
 import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper } from './NavigationBar.styling';
-import { AppBarButton } from '../Common.styling';
+import { AppBarButton } from '../Common/Common.styling';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 function NavigationBar() {
