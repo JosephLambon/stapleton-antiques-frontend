@@ -7,6 +7,7 @@ import type { Antique } from '../../services/models/antique';
 import NavigateBack from '../Common/NavigateBack';
 import { CarouselWrapperMobile, FlexColumnWrapper, GridWrapperDesktop, ItemName, Price, OrBestOffer, InformationWrapper, EnquireButton, FlexGrowSpacer } from './AntiqueDetails.styling';
 import ExpandableMarkdown from '../Common/ExpandableMarkdown';
+import { OutletContainer } from '../Common/Common.styling';
 
 interface AntiqueLoaderParams {
   id: string;
@@ -43,7 +44,7 @@ function AntiqueDetails() {
     )
     
     return (
-        <>
+        <OutletContainer maxWidth='lg'>
             {onMobile ? (
               <FlexColumnWrapper>
                 <NavigateBack label={antique.name} />
@@ -95,7 +96,7 @@ function AntiqueDetails() {
                 </>
               )
             }
-        </>
+        </OutletContainer>
     )
 }
 
