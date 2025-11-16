@@ -31,7 +31,7 @@ export default function AntiqueGallery() {
         <AntiqueGalleryWrapper
         cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
         gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
-        rowHeight={240}
+        rowHeight={280}
         >
           {Array.from({ length: onMobile ? CONSTANTS.MOBILE.SKELETON_COUNT : CONSTANTS.LARGER_SCREENS.SKELETON_COUNT }).map((_, idx) => (
             <AntiqueGallerySkeleton key={idx} />
@@ -43,7 +43,7 @@ export default function AntiqueGallery() {
         <AntiqueGalleryWrapper
             cols={onMobile ? CONSTANTS.MOBILE.GALLERY_COLUMNS : CONSTANTS.LARGER_SCREENS.GALLERY_COLUMNS}
             gap={onMobile ? CONSTANTS.MOBILE.GALLERY_GAP : CONSTANTS.LARGER_SCREENS.GALLERY_GAP}
-            rowHeight={240}
+            rowHeight={280}
             >
               {antiques!.map((antique) => (
                   <AntiqueGalleryItem
