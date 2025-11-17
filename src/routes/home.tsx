@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { MainBackground } from '../components/Common/Common.styling';
-import NavigationBar from '../components/NavigationBar/NavigationBar';
+import { HideableNavigationBar } from '../components/NavigationBar/NavigationBar';
 
 function Home() {
   return (
     <>
       <MainBackground>
-        <NavigationBar />
+        <HideableNavigationBar />
         
         <Outlet />
 

@@ -5,7 +5,9 @@ import {
   Container,
   Stack,
   useMediaQuery,
-  useTheme
+  useTheme,
+  useScrollTrigger,
+  Slide
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { CONSTANTS } from '../../common/constants';
@@ -27,7 +29,7 @@ function NavigationBar() {
   const closeDrawer = () => setDrawerOpen(false);
 
   return (
-    <AppBar position='sticky'>
+    <AppBar position='static'>
       <Container disableGutters={onMobile ? true : false} maxWidth="lg">
         <Toolbar sx={{
           display: 'grid',
@@ -91,3 +93,16 @@ function NavigationBar() {
 }
 
 export default NavigationBar;
+
+export function HideableNavigationBar() {
+  const trigger = useScrollTrigger();
+
+  return (
+    <Slide appear={true} direction="down" in={trigger}>
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
+        <NavigationBar />
+      </div>
+    </Slide>
+  );
+}
+

@@ -23,12 +23,13 @@ const Gallery = () => {
           pb: onMobile ? 20 : 10
         }}
       >
-        <Typography variant='h2' color='textPrimary'
+        <Typography variant='h1' color='textPrimary'
           sx={{
+            fontSize: '48px',
             textShadow: '-15px 5px 20px #000000ad'
           }}
         >
-          Decorative Antiques
+          Stapleton Antiques
         </Typography>
       </Box>
 
