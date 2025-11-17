@@ -12,7 +12,7 @@ const Gallery = () => {
         sx={{
           width: '100%',
           height: '78vh',
-          marginTop: '-5vh',
+          marginTop: '-2vh',
           backgroundImage: 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/background.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -20,7 +20,7 @@ const Gallery = () => {
           display: 'flex',
           justifyContent:'center',
           alignItems: 'end',
-          pb: onMobile ? 20 : 10
+          pb: onMobile ? 18 : 10
         }}
       >
         <Typography variant='h1' color='textPrimary'

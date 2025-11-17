@@ -95,7 +95,7 @@ function NavigationBar() {
 export default NavigationBar;
 
 export function HideableNavigationBar() {
-  const trigger = useScrollTrigger();
+  const trigger = useScrollTrigger({threshold: 500});
 
   return (
     <Slide appear={true} direction="down" in={trigger}>

@@ -11,7 +11,7 @@ export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({}) => 
 }))
 
 export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
-    minHeight: '100dvh',
+    minHeight: '180dvh',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: theme.palette.primary.main
