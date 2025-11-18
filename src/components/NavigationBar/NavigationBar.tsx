@@ -74,7 +74,7 @@ function NavigationBar({ nonGalleryView = false } : {nonGalleryView? : boolean})
                 variant="h4"
                 noWrap
                 sx={{
-                  visibility : scrolled ? "visible" : "hidden"
+                  visibility : nonGalleryView ? "visible" : scrolled ? "visible" : "hidden"
                 }}
                 to='/'
               >

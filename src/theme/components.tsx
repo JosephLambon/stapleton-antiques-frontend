@@ -53,7 +53,8 @@ export const components : ThemeOptions["components"] = {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none'
+          textTransform: 'none',
+          fontSize: '1.1rem'
         }
       },
     }
