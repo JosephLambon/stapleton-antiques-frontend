@@ -35,7 +35,7 @@ function NavigationBar({ nonGalleryView = false } : {nonGalleryView? : boolean})
       backgroundColor: nonGalleryView ? theme.palette.primary.main : scrolled ? theme.palette.primary.main : "transparent",
       transition: scrolled ? "0.3s" : "0.5s",
     }}
-    elevation={scrolled ? 2 : 0}
+    elevation={scrolled ? 1 : 0}
     >
       <Container disableGutters={onMobile ? true : false} maxWidth="lg">
         <Toolbar sx={{

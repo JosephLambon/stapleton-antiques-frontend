@@ -32,7 +32,6 @@ const Gallery = () => {
         >
           <Typography variant='h1' color='textPrimary'
             sx={{
-              fontSize: '42px',
               textShadow: '-15px 5px 20px #000000ad'
             }}
           >
@@ -42,7 +41,7 @@ const Gallery = () => {
         </Box>
 
         <OutletContainer maxWidth='lg'>
-          <Typography sx={{px:1, pb:1, pt: 10}} variant='h2'>Our latest</Typography>
+          <Typography sx={{px:1, pb:1, pt: onMobile? 10 : 6}} variant={onMobile ? 'h2' : 'h3'}>Our latest</Typography>
           <AntiqueGallery />
         </OutletContainer>
       </>
