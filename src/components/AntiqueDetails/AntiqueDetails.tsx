@@ -21,7 +21,6 @@ export async function loader({ params }: LoaderFunctionArgs<AntiqueLoaderParams>
       statusText: "Antique Not Found"
     });
   }
-  console.log(antique.description);
   return { antique };
 }
 
@@ -36,7 +35,6 @@ function AntiqueDetails() {
   const body: string = encodeURIComponent(`Hi,\n\nI would like to enquire about your listing '${antique.name}' (#${antique.id}). \n\n`);
   
     useEffect(() => {
-        // Scroll the window to the top whenever the pathname changes
         window.scrollTo(0, 0);
       }, []);
     const formattedPrice = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
@@ -44,7 +42,7 @@ function AntiqueDetails() {
     )
     
     return (
-        <OutletContainer maxWidth='lg'>
+        <OutletContainer maxWidth='lg' addPadding={true}>
             {onMobile ? (
               <FlexColumnWrapper>
                 <NavigateBack label={antique.name} />
@@ -52,9 +50,9 @@ function AntiqueDetails() {
                   <ImageCarousel images={antique.images} />
                 </CarouselWrapperMobile>
                 <InformationWrapper onMobile={onMobile}>
-                  <ItemName variant='h4'><b>{antique.name}</b></ItemName>
-                  <Price variant='h4'><b>{formattedPrice}</b></Price>
-                  <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
+                  <ItemName variant='h3'><b>{antique.name}</b></ItemName>
+                  <Price variant='h3'><b>{formattedPrice}</b></Price>
+                  <OrBestOffer variant='h5'><b>or best offer</b></OrBestOffer>
                   
                   <ExpandableMarkdown description={antique.description} />
                 </InformationWrapper>

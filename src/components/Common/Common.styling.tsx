@@ -7,16 +7,23 @@ export const AppBarButton = styled(NavigationLink)<NavigationLinkProps>(({}) => 
     textAlign: 'center',
     textDecoration: 'none',
     cursor: 'pointer',
-    color: 'inherit' //temporary - needs to be made dynamic
+    color: 'inherit'
 }))
 
 export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
-    minHeight: '180dvh',
+    minHeight: '100dvh',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: theme.palette.primary.main
 }))
 
-export const OutletContainer = styled(Container)<ContainerProps>(() => ({
-    flex: '1 0 auto'
+interface OutletContainerProps extends ContainerProps {
+    addPadding?: boolean
+}
+
+export const OutletContainer = styled(Container)<OutletContainerProps>(({addPadding, theme}) => ({
+    flex: '1 0 auto',
+    paddingLeft: addPadding ? 'auto' : theme.spacing(0.5),
+    paddingRight: addPadding ? 'auto' : theme.spacing(0.5),
+    paddingTop: addPadding ? 'auto' : 0,
 }))

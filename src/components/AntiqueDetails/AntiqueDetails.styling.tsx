@@ -33,7 +33,7 @@ interface ReactiveBoxProps extends BoxProps {
 }
 
 export const ItemName = styled(Typography)<TypographyProps>(({theme}) => ({
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
 }))
 
