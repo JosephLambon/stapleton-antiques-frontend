@@ -46,7 +46,7 @@ export const components : ThemeOptions["components"] = {
         paper: ({ theme }) => ({
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.getContrastText(theme.palette.primary.main),
-          width: 250
+          width: '100vw'
         }),
       },
     },
