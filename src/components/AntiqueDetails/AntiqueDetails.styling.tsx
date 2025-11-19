@@ -58,7 +58,7 @@ export const InformationWrapper = styled(Box)<ReactiveBoxProps>(({onMobile, them
 }))
 
 interface ReactiveButtonProps extends ButtonProps {
-    onMobile: boolean
+    onMobile: string
 }
 
 export const EnquireButton = styled(Button)<ReactiveButtonProps>(({onMobile, theme}) => ({

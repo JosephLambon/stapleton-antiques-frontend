@@ -18,12 +18,12 @@ export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
 }))
 
 interface OutletContainerProps extends ContainerProps {
-    addPadding?: boolean
+    addpadding?: boolean
 }
 
-export const OutletContainer = styled(Container)<OutletContainerProps>(({addPadding, theme}) => ({
+export const OutletContainer = styled(Container)<OutletContainerProps>(({addpadding, theme}) => ({
     flex: '1 0 auto',
-    paddingLeft: addPadding ? 'auto' : theme.spacing(0.5),
-    paddingRight: addPadding ? 'auto' : theme.spacing(0.5),
-    paddingTop: addPadding ? 'auto' : 0,
+    paddingLeft: addpadding ? 'auto' : theme.spacing(0.5),
+    paddingRight: addpadding ? 'auto' : theme.spacing(0.5),
+    paddingTop: addpadding ? 'auto' : 0,
 }))

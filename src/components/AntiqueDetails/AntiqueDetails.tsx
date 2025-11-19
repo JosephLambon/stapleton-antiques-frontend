@@ -42,7 +42,7 @@ function AntiqueDetails() {
     )
     
     return (
-        <OutletContainer maxWidth='lg' addPadding={true}>
+        <OutletContainer maxWidth='lg' addpadding="true">
             {onMobile ? (
               <FlexColumnWrapper>
                 <NavigateBack label={antique.name} />
