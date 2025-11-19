@@ -2,6 +2,7 @@ import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import AntiqueGallery from '../../components/AntiqueGallery/AntiqueGallery';
 import { OutletContainer } from '../../components/Common/Common.styling';
 import { HideableNavigationBar } from '../../components/NavigationBar/NavigationBar';
+import Filter from '../../components/Common/Filter';
 
 const Gallery = () => {
   const theme = useTheme();
@@ -41,7 +42,10 @@ const Gallery = () => {
         </Box>
 
         <OutletContainer maxWidth='lg'>
-          <Typography sx={{px:1, pb:1, pt: onMobile? 10 : 6}} variant={onMobile ? 'h2' : 'h3'}>Our latest</Typography>
+          <Box sx={{px:1, pb:1, pt: onMobile? 10 : 6, display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+            <Typography  variant={onMobile ? 'h2' : 'h3'}>Our latest</Typography>
+            <Filter />
+          </Box>
           <AntiqueGallery />
         </OutletContainer>
       </>
