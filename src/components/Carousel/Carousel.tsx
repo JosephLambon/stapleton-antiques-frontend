@@ -38,7 +38,7 @@ function ImageCarousel({images} : ImageCarouselProps)
         responsive={{
             desktop: {
                 breakpoint: {
-                    max: breakpoints.xl,
+                    max: 5000,
                     min: breakpoints.lg
                 },
                 items: 1

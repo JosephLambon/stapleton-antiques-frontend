@@ -1,4 +1,4 @@
-import {styled} from '@mui/material/styles';
+import {alpha, styled} from '@mui/material/styles';
 import { Box, Button, Typography, type BoxProps, type ButtonProps, type TypographyProps } from '@mui/material';
 
 export const CarouselWrapperMobile = styled(Box)<BoxProps>(() => ({
@@ -44,6 +44,16 @@ export const Price = styled(Typography)<TypographyProps>(({theme}) => ({
 export const OrBestOffer = styled(Typography)<TypographyProps>(({ theme}) => ({
     marginBottom: theme.spacing(2),
     color: theme.palette.text.secondary
+}))
+
+export const Sold = styled(Typography)<TypographyProps>(({theme}) => ({
+    padding: theme.spacing(1),
+    backgroundColor: alpha(theme.palette.primary.light, 1),
+    marginTop: theme.spacing(2),
+    width: '33%',
+    textAlign: 'center',
+    textShadow: '-15px 5px 20px #000000ff',
+    borderRadius: '5px'
 }))
 
 export const InformationWrapper = styled(Box)<ReactiveBoxProps>(({onMobile, theme}) => ({

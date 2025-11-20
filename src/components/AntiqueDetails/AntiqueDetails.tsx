@@ -5,7 +5,7 @@ import ImageCarousel from '../Carousel/Carousel';
 import { useEffect } from 'react';
 import type { Antique } from '../../services/models/antique';
 import NavigateBack from '../Common/NavigateBack';
-import { CarouselWrapperMobile, FlexColumnWrapper, GridWrapperDesktop, ItemName, Price, OrBestOffer, InformationWrapper, EnquireButton, FlexGrowSpacer } from './AntiqueDetails.styling';
+import { CarouselWrapperMobile, FlexColumnWrapper, GridWrapperDesktop, ItemName, Price, OrBestOffer, InformationWrapper, EnquireButton, FlexGrowSpacer, Sold } from './AntiqueDetails.styling';
 import ExpandableMarkdown from '../Common/ExpandableMarkdown';
 import { OutletContainer } from '../Common/Common.styling';
 
@@ -33,6 +33,7 @@ function AntiqueDetails() {
   const toEmail: string = "joe.lambon25@gmail.com";
   const subject: string = encodeURIComponent(`Enquiry - ${antique.name}`);
   const body: string = encodeURIComponent(`Hi,\n\nI would like to enquire about your listing '${antique.name}' (#${antique.id}). \n\n`);
+  const sold = antique.status == "Sold";
   
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -51,9 +52,14 @@ function AntiqueDetails() {
                 </CarouselWrapperMobile>
                 <InformationWrapper onMobile={onMobile}>
                   <ItemName variant='h3'><b>{antique.name}</b></ItemName>
-                  <Price variant='h3'><b>{formattedPrice}</b></Price>
-                  <OrBestOffer variant='h5'><b>or best offer</b></OrBestOffer>
-                  
+                  {sold ? (
+                    <Sold variant='h3'>SOLD</Sold>
+                  ) : (
+                    <>
+                      <Price variant='h3'><b>{formattedPrice}</b></Price>
+                      <OrBestOffer variant='h5'><b>or best offer</b></OrBestOffer>
+                    </>
+                  )}
                   <ExpandableMarkdown description={antique.description} />
                 </InformationWrapper>
                 <FlexGrowSpacer />
@@ -74,18 +80,23 @@ function AntiqueDetails() {
                     <ImageCarousel images={antique.images} />
                     <InformationWrapper onMobile={onMobile}>
                       <ItemName variant='h4'><b>{antique.name}</b></ItemName>
-                      <Price variant='h4'><b>{formattedPrice}</b></Price>
-                      <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
-
-                      <EnquireButton
-                        onMobile={onMobile}
-                        size='medium'
-                        variant='contained'
-                        color="secondary"
-                        onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
-                      >
-                          Enquire
-                      </EnquireButton>
+                      {sold ? (
+                        <Sold sx={{mt: 4}} variant='h5'>SOLD</Sold>
+                      ) : (
+                        <>
+                          <Price variant='h4'><b>{formattedPrice}</b></Price>
+                          <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
+                          <EnquireButton
+                            onMobile={onMobile}
+                            size='medium'
+                            variant='contained'
+                            color="secondary"
+                            onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
+                          >
+                              Enquire
+                          </EnquireButton>
+                        </>
+                      )}
 
                       <ExpandableMarkdown description={antique.description} />
                       

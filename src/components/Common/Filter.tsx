@@ -1,9 +1,20 @@
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Popover } from "@mui/material";
-import { useState } from "react";
+import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grow, Popover, Typography } from "@mui/material";
+import { useState, type Dispatch } from "react";
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-function Filter() {
+export type Statuses = {
+    available: boolean
+    sold: boolean
+}
+
+type FilterProps = {
+    selectedStatuses: Statuses
+    onChangeStatuses: Dispatch<Statuses>
+}
+
+function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [showValidationMessage, setShowValidationMessage] = useState(false);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -16,32 +27,29 @@ function Filter() {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const [selectedStatuses, setSelectedStatuses] = useState({
-        available: true,
-        sold: false
-    });
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = event.target;
         const selectionCount = Object.values(selectedStatuses).filter(s=>s===true).length;
 
         if(!checked && selectionCount === 1) {
+            setShowValidationMessage(true);
             return;
         }
         
-        setSelectedStatuses({
+        setShowValidationMessage(false);
+        onChangeStatuses({
         ...selectedStatuses,
         [name]: checked,
         });
     };
 
     const { available, sold } = selectedStatuses;
-    const error = [available, sold].filter((v) => v).length <= 1;
-
 
     return(
         <>
-            <Button aria-describedby={id} size="small" color="secondary" variant="contained" onClick={handleClick}>
+            <Button aria-describedby={id}
+            sx={{py:0}}
+             size="small" color="secondary" variant="contained" onClick={handleClick}>
                 <FilterListIcon sx={{ mr: 1 }} />
                 Filter
             </Button>
@@ -56,15 +64,25 @@ function Filter() {
                 horizontal: 'left',
             }}
             >
-                <FormControl error={error} sx={{ m: 3 }} component="fieldset" variant="standard">
-                    <FormLabel component="legend">Select status</FormLabel>
+                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+                    <FormLabel component="legend">
+                        <Typography variant="h6" color="primary">Status</Typography>
+                    </FormLabel>
+                    <Grow in={showValidationMessage} mountOnEnter unmountOnExit>
+                        <Typography
+                        sx={{mt:0, mb:0}}
+                        // visibility={showValidationMessage ? "visible" : "hidden"} 
+                        color="error">
+                            At least 1 status must be selected.
+                        </Typography>
+                    </Grow>
                     <FormGroup sx={{
-                    padding:3,
+                    padding:1,
                     color: 'black'
                 }} >
                         <FormControlLabel color="primary"
                             control={
-                            <Checkbox defaultChecked
+                            <Checkbox
                                 checked={available}
                                 onChange={handleChange}
                                 name="available"
