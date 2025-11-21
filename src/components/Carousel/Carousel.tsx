@@ -18,7 +18,7 @@ function ImageCarousel({images} : ImageCarouselProps)
     return (
         <Carousel
         additionalTransfrom={0}
-        customTransition="all .3s ease-in-out" // duration of slide animation
+        customTransition={onMobile ? "all .1s ease-in-out" :  "all .2s ease-in-out"}// duration of slide animation
         showDots={true}
         arrows={onMobile ? false : true}
         autoPlay={false}
