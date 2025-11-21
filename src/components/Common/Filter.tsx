@@ -41,6 +41,7 @@ function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
         ...selectedStatuses,
         [name]: checked,
         });
+        handleClose();
     };
 
     const { available, sold } = selectedStatuses;
@@ -71,7 +72,6 @@ function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
                     <Grow in={showValidationMessage} mountOnEnter unmountOnExit>
                         <Typography
                         sx={{mt:0, mb:0}}
-                        // visibility={showValidationMessage ? "visible" : "hidden"} 
                         color="error">
                             At least 1 status must be selected.
                         </Typography>

@@ -13,11 +13,6 @@ const Gallery = () => {
   return (
       <>
         <HideableNavigationBar />
-        <Box sx={{
-            background:
-              'radial-gradient(circle at center, rgba(0,0,0,0) 66%, rgba(0,0,0,1) 100%)'
-            }}
-            >
           <Box
             sx={{
               width: '100%',
@@ -26,7 +21,6 @@ const Gallery = () => {
               backgroundImage: 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/background.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-
               display: 'flex',
               justifyContent:'center',
               alignItems: 'end',
@@ -35,12 +29,17 @@ const Gallery = () => {
           >
             <Typography variant='h1' color='textPrimary'
               sx={{
-                textShadow: '-15px 5px 20px #000000ad'
+                whiteSpace: 'nowrap',  // ensures single line
+                px: 1,
+                textShadow: '-15px 5px 20px #000000ad',
+                textAlign: 'center',
+                '@media (max-width: 600px)': {
+                  fontSize: 'clamp(1.8rem, 95vw, 3rem)',
+                }
               }}
             >
               Stapleton Antiques
             </Typography>
-          </Box>
         </Box>
 
         <OutletContainer maxWidth='lg'>
