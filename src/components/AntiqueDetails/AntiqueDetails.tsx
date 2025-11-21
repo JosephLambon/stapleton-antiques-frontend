@@ -64,7 +64,7 @@ function AntiqueDetails() {
                 </InformationWrapper>
                 <FlexGrowSpacer />
                 <EnquireButton
-                onMobile={onMobile}
+                onMobile={onMobile.toString()}
                 onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
                 size='large' 
                 variant='contained'
@@ -87,7 +87,7 @@ function AntiqueDetails() {
                           <Price variant='h4'><b>{formattedPrice}</b></Price>
                           <OrBestOffer variant='h6'><b>or best offer</b></OrBestOffer>
                           <EnquireButton
-                            onMobile={onMobile}
+                            onMobile={onMobile.toString()}
                             size='medium'
                             variant='contained'
                             color="secondary"

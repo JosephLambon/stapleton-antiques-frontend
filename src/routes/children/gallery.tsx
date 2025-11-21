@@ -3,13 +3,12 @@ import AntiqueGallery from '../../components/AntiqueGallery/AntiqueGallery';
 import { OutletContainer } from '../../components/Common/Common.styling';
 import { HideableNavigationBar } from '../../components/NavigationBar/NavigationBar';
 import Filter from '../../components/Common/Filter';
-import { StatusContext } from '../home';
-import { useContext } from 'react';
+import useStatusContext from '../../hooks/useStatusContext';
 
 const Gallery = () => {
   const theme = useTheme();
   const onMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
-  const { selectedStatuses, setSelectedStatuses } = useContext(StatusContext);
+  const { selectedStatuses, setSelectedStatuses } = useStatusContext();
 
   return (
       <>

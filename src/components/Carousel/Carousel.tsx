@@ -46,7 +46,7 @@ function ImageCarousel({images} : ImageCarouselProps)
             tablet: {
                 breakpoint: {
                     max: breakpoints.lg,
-                    min: breakpoints.md
+                    min: breakpoints.sm
                 },
                 items: 1
             },

@@ -18,7 +18,7 @@ export const MainBackground = styled(Box)<BoxProps>(({theme}) => ({
 }))
 
 interface OutletContainerProps extends ContainerProps {
-    addpadding?: boolean
+    addpadding?: string
 }
 
 export const OutletContainer = styled(Container)<OutletContainerProps>(({addpadding, theme}) => ({

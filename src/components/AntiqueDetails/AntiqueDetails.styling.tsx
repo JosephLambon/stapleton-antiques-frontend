@@ -51,6 +51,7 @@ export const Sold = styled(Typography)<TypographyProps>(({theme}) => ({
     backgroundColor: alpha(theme.palette.primary.light, 1),
     marginTop: theme.spacing(2),
     width: '33%',
+    minWidth: '80px',
     textAlign: 'center',
     textShadow: '-15px 5px 20px #000000ff',
     borderRadius: '5px'

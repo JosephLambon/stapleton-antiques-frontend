@@ -2,11 +2,16 @@ import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { MainBackground } from '../components/Common/Common.styling';
 import { createContext, useState } from 'react';
+import React from 'react';
 
-export const StatusContext = createContext({
-  selectedStatuses: { available: true, sold: false },
-  setSelectedStatuses: (value: any) => {}
-});
+export interface StatusContextType {
+  selectedStatuses: { available: boolean, sold: boolean };
+  setSelectedStatuses: React.Dispatch<
+  React.SetStateAction<{ available: boolean, sold: boolean}>
+  >;
+};
+
+export const StatusContext = createContext<StatusContextType | null>(null);
 
 function Home() {
   const [selectedStatuses, setSelectedStatuses] = useState({
@@ -15,7 +20,7 @@ function Home() {
     });
 
   return (
-    <StatusContext.Provider value={{ selectedStatuses, setSelectedStatuses }}>
+    <StatusContext.Provider value={{selectedStatuses, setSelectedStatuses}}>
       <MainBackground>
         <Outlet />
 

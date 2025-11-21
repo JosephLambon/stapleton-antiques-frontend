@@ -49,7 +49,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
             loading="lazy"
             />
           { sold ? ( 
-            <Typography variant="h7" 
+            <Typography variant="h6" 
               sx={{position:'absolute',
                 top: 0,
                 right: 0,
