@@ -59,7 +59,14 @@ jobs:
           submodules: true
           lfs: false
           # Check out the branch specified in the manual input
-          ref: ${{ github.event.inputs.branch }} 
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies.yml
+
+      - name: Build
+        run: npm run build -- --mode development
+
       - name: Build And Deploy (DEV)
         id: deploy
         uses: Azure/static-web-apps-deploy@v1
@@ -98,8 +105,16 @@ jobs:
         with:
           submodules: true
           lfs: false
-          # Check out the source branch determined in the previous step
           ref: ${{ env.SOURCE_BRANCH }} 
+
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies.yml
+
+      - name: Build
+        # The 'vite build' command typically uses the production config by default.
+        # To use .env.test, you must pass the --mode test flag to Vite.
+        run: npm run build -- --mode test
+        # Assumes your package.json has a standard 'build' script.
           
       - name: Build And Deploy (TEST)
         uses: Azure/static-web-apps-deploy@v1
@@ -121,9 +136,15 @@ jobs:
     environment: Production # <--- Triggers the Manual Approval Gate
     steps:
       - uses: actions/checkout@v3
-        with:
+        with: 
           submodules: true
           lfs: false
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies.yml
+
+      - name: Build for Test Environment
+        run: npm run build -- --mode production
+
       - name: Build And Deploy (PROD)
         uses: Azure/static-web-apps-deploy@v1
         with:
