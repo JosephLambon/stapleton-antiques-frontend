@@ -11,38 +11,96 @@ on:
       - development
       - main
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy to Dev/Test'
+        required: true
+        default: 'development'
 
 jobs:
-  dev:
+  # -----------------------------------------------------------------
+  # ENTRY 1: AUTOMATIC DEV DEPLOYMENT (Push Trigger)
+  # Runs only when code is pushed to 'development' branch.
+  # -----------------------------------------------------------------
+  auto_trigger_dev:
     if: github.event_name == 'push' && github.ref_name == 'development'
     runs-on: ubuntu-latest
-    name: Deploy to Dev
+    name: Auto Dev Deploy
+    outputs:
+      branch_name: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
       - name: Build And Deploy (DEV)
+        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/" 
-          api_location: "" 
           output_location: "dist"
 
-  test:
-    needs: dev # This creates the chain
-    if: github.event_name == 'push' && github.ref_name == 'development'
+  # -----------------------------------------------------------------
+  # ENTRY 2: MANUAL DEV DEPLOYMENT (Dispatch Trigger)
+  # Runs only when manually initiated, using the branch input.
+  # -----------------------------------------------------------------
+  manual_trigger_dev:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    name: Deploy to Test
-    environment: Test # <--- Triggers the Manual Approval Gate
+    name: Manual Dev Deploy
+    outputs:
+      branch_name: ${{ github.event.inputs.branch }}
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
+          # Check out the branch specified in the manual input
+          ref: ${{ github.event.inputs.branch }} 
+      - name: Build And Deploy (DEV)
+        id: deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/" 
+          output_location: "dist"
+
+  # -----------------------------------------------------------------
+  # PROMOTION JOB: TEST DEPLOYMENT (Needs Manual Approval)
+  # This job depends on EITHER the auto or manual trigger jobs.
+  # -----------------------------------------------------------------
+  test:
+    # Set needs to EITHER job, allowing the workflow to proceed if one succeeds
+    needs: [auto_trigger_dev, manual_trigger_dev] 
+    # Use always() to ensure the job runs as long as ONE of the needs succeeded
+    if: always() && (needs.auto_trigger_dev.result == 'success' || needs.manual_trigger_dev.result == 'success')
+    runs-on: ubuntu-latest
+    name: Deploy to Test
+    environment: Test # <--- Triggers the Manual Approval Gate
+    steps:
+      # This step determines which job actually ran and sets the branch name for checkout
+      - name: Determine Source Branch
+        id: branch_context
+        run: |
+          # Use outputs from the successful predecessor job
+          if ${{ needs.auto_trigger_dev.result == 'success' }}; then
+            echo "SOURCE_BRANCH=${{ needs.auto_trigger_dev.outputs.branch_name }}" >> $GITHUB_ENV
+          else
+            echo "SOURCE_BRANCH=${{ needs.manual_trigger_dev.outputs.branch_name }}" >> $GITHUB_ENV
+          fi
+          
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+          # Check out the source branch determined in the previous step
+          ref: ${{ env.SOURCE_BRANCH }} 
+          
       - name: Build And Deploy (TEST)
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -50,9 +108,12 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/" 
-          api_location: "" 
           output_location: "dist"
-
+          
+  # -----------------------------------------------------------------
+  # JOB 4: PROD DEPLOYMENT (Unchanged)
+  # Runs on 'main' branch push, requires Manual Approval via 'Production' Environment
+  # -----------------------------------------------------------------
   prod:
     if: github.event_name == 'push' && github.ref_name == 'main'
     runs-on: ubuntu-latest
@@ -69,14 +130,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_PROD }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/" 
-          api_location: "" 
+          app_location: "/"
           output_location: "dist"
 
-  # -----------------------------------------------------------------
-  # JOB 4: PR PREVIEW (Ephemeral)
-  # When a PR is created or updated, deploys to a staging url attached to your 'dev' resource
-  # -----------------------------------------------------------------
   deploy_pr_staging:
     if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
@@ -130,4 +186,4 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_PROD }}
-          action: "close"
+          action: "close"  
