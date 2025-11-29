@@ -62,7 +62,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
 
       - name: Setup and Install
-        uses: ./.github/actions/setup-dependencies.yml
+        uses: ./.github/actions/setup-dependencies
 
       - name: Build
         run: npm run build -- --mode development
@@ -108,7 +108,7 @@ jobs:
           ref: ${{ env.SOURCE_BRANCH }} 
 
       - name: Setup and Install
-        uses: ./.github/actions/setup-dependencies.yml
+        uses: ./.github/actions/setup-dependencies
 
       - name: Build
         # The 'vite build' command typically uses the production config by default.
@@ -140,7 +140,7 @@ jobs:
           submodules: true
           lfs: false
       - name: Setup and Install
-        uses: ./.github/actions/setup-dependencies.yml
+        uses: ./.github/actions/setup-dependencies
 
       - name: Build for Test Environment
         run: npm run build -- --mode production
