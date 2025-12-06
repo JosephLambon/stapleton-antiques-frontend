@@ -30,7 +30,7 @@ function ExpandableMarkdown({description} : {description: string}) {
                     <Button
                     variant='text'
                     disableRipple
-                    color="inherit"
+                    color="secondary"
                     onClick={() => setIsExpanded(false)}
                     >
                         show less

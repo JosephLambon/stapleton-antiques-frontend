@@ -19,6 +19,7 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
   });
   const navigate = useNavigate();
   const sold = item.status == "Sold";
+  const BASE_BLOB_STORAGE_URL: string = import.meta.env.VITE_BLOB_STORAGE_IMAGE_URL;
 
   return (
     <Fade
@@ -43,8 +44,8 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
           }
         }}>
           <img
-            srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
-            src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format`}
+            srcSet={`${BASE_BLOB_STORAGE_URL}/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
+            src={`${BASE_BLOB_STORAGE_URL}/${item.thumbnail}?w=300&fit=crop&auto=format`}
             alt={item.name}
             loading="lazy"
             />

@@ -55,8 +55,11 @@ export const components : ThemeOptions["components"] = {
         root: {
           textTransform: 'none',
           fontSize: '1.1rem'
-        }
-      },
+        },
+        text: ({theme}) => ({
+          color: theme.palette.text.secondary
+        })
+      }
     }
 };
 

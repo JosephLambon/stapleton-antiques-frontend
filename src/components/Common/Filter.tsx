@@ -1,6 +1,6 @@
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grow, Popover, Typography } from "@mui/material";
+import { FormControlLabel, FormLabel, Grow, Popover, Typography } from "@mui/material";
 import { useState, type Dispatch } from "react";
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { FilterButton, FilterForm, FilterIcon, GreyOutlinedCheckbox, StatusOptions } from "./Filter.styling";
 
 export type Statuses = {
     available: boolean
@@ -48,12 +48,13 @@ function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
 
     return(
         <>
-            <Button aria-describedby={id}
-            sx={{py:0}}
-             size="small" color="secondary" variant="contained" onClick={handleClick}>
-                <FilterListIcon sx={{ mr: 1 }} />
+            <FilterButton
+            aria-describedby={id}
+            size="small" 
+            color="secondary" variant="contained" onClick={handleClick}>
+                <FilterIcon />
                 Filter
-            </Button>
+            </FilterButton>
             
             <Popover
             id={id}
@@ -65,24 +66,21 @@ function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
                 horizontal: 'left',
             }}
             >
-                <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+                <FilterForm 
+                component="fieldset" variant="standard">
                     <FormLabel component="legend">
-                        <Typography variant="h6" color="primary">Status</Typography>
+                        <Typography variant="h6" color='black'>Status</Typography>
                     </FormLabel>
                     <Grow in={showValidationMessage} mountOnEnter unmountOnExit>
                         <Typography
-                        sx={{mt:0, mb:0}}
                         color="error">
                             At least 1 status must be selected.
                         </Typography>
                     </Grow>
-                    <FormGroup sx={{
-                    padding:1,
-                    color: 'black'
-                }} >
+                    <StatusOptions >
                         <FormControlLabel color="primary"
                             control={
-                            <Checkbox
+                            <GreyOutlinedCheckbox
                                 checked={available}
                                 onChange={handleChange}
                                 name="available"
@@ -91,15 +89,15 @@ function Filter({selectedStatuses, onChangeStatuses} : FilterProps) {
                             label="Available" />
                         <FormControlLabel 
                             control={
-                            <Checkbox
+                            <GreyOutlinedCheckbox
                                 checked={sold}
                                 onChange={handleChange}
                                 name="sold"
                                 />
                             } label="Sold"
                             />
-                    </FormGroup>
-                </FormControl>
+                    </StatusOptions>
+                </FilterForm>
             </Popover>
         </>
     )

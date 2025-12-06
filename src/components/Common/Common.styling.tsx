@@ -27,3 +27,19 @@ export const OutletContainer = styled(Container)<OutletContainerProps>(({addpadd
     paddingRight: addpadding ? 'auto' : theme.spacing(0.5),
     paddingTop: addpadding ? 'auto' : 0,
 }))
+
+export const LandingPage = styled(Box)<BoxProps>(({theme}) => ({
+    width: '100%',
+    height: '78vh',
+    marginTop: '-2vh',
+    backgroundImage: 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/background.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    justifyContent:'center',
+    alignItems: 'end',
+    xs: {
+        paddingBottom: theme.spacing(14)
+    },
+    paddingBottom: theme.spacing(10)
+}))
