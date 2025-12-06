@@ -1,4 +1,4 @@
-import {styled} from '@mui/material/styles';
+import {alpha, styled} from '@mui/material/styles';
 import { Box, Button, Typography, type BoxProps, type ButtonProps, type TypographyProps } from '@mui/material';
 
 export const CarouselWrapperMobile = styled(Box)<BoxProps>(() => ({
@@ -33,7 +33,7 @@ interface ReactiveBoxProps extends BoxProps {
 }
 
 export const ItemName = styled(Typography)<TypographyProps>(({theme}) => ({
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
 }))
 
@@ -44,6 +44,18 @@ export const Price = styled(Typography)<TypographyProps>(({theme}) => ({
 export const OrBestOffer = styled(Typography)<TypographyProps>(({ theme}) => ({
     marginBottom: theme.spacing(2),
     color: theme.palette.text.secondary
+}))
+
+export const Sold = styled(Typography)<TypographyProps>(({theme}) => ({
+    padding: theme.spacing(1),
+    backgroundColor: alpha(theme.palette.primary.light, 1),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(3),
+    width: '33%',
+    minWidth: '80px',
+    textAlign: 'center',
+    textShadow: '-15px 5px 20px #000000ff',
+    borderRadius: '5px'
 }))
 
 export const InformationWrapper = styled(Box)<ReactiveBoxProps>(({onMobile, theme}) => ({
@@ -58,7 +70,7 @@ export const InformationWrapper = styled(Box)<ReactiveBoxProps>(({onMobile, them
 }))
 
 interface ReactiveButtonProps extends ButtonProps {
-    onMobile: boolean
+    onMobile: string
 }
 
 export const EnquireButton = styled(Button)<ReactiveButtonProps>(({onMobile, theme}) => ({

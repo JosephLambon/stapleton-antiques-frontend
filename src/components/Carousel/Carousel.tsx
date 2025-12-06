@@ -14,11 +14,12 @@ function ImageCarousel({images} : ImageCarouselProps)
     const theme = useTheme();
     const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const breakpoints = theme.breakpoints.values;
+    const BASE_BLOB_STORAGE_URL: string = import.meta.env.VITE_BLOB_STORAGE_IMAGE_URL;
     
     return (
         <Carousel
         additionalTransfrom={0}
-        customTransition="all .3s ease-in-out" // duration of slide animation
+        customTransition={onMobile ? "all .1s ease-in-out" :  "all .2s ease-in-out"}// duration of slide animation
         showDots={true}
         arrows={onMobile ? false : true}
         autoPlay={false}
@@ -38,7 +39,7 @@ function ImageCarousel({images} : ImageCarouselProps)
         responsive={{
             desktop: {
                 breakpoint: {
-                    max: breakpoints.xl,
+                    max: 5000,
                     min: breakpoints.lg
                 },
                 items: 1
@@ -46,7 +47,7 @@ function ImageCarousel({images} : ImageCarouselProps)
             tablet: {
                 breakpoint: {
                     max: breakpoints.lg,
-                    min: breakpoints.md
+                    min: breakpoints.sm
                 },
                 items: 1
             },
@@ -68,8 +69,8 @@ function ImageCarousel({images} : ImageCarouselProps)
                 {images.map((image, index) => (
                     <img key={index}
                         draggable="false"
-                        srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
-                        src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${image}?auto=format&fit=crop&w=800&q=60`}
+                        srcSet={`${BASE_BLOB_STORAGE_URL}/${image}?auto=format&fit=crop&w=800&q=60`}
+                        src={`${BASE_BLOB_STORAGE_URL}/${image}?auto=format&fit=crop&w=800&q=60`}
                         alt={image}
                         loading="lazy"
                         style={{

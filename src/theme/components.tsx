@@ -46,16 +46,20 @@ export const components : ThemeOptions["components"] = {
         paper: ({ theme }) => ({
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.getContrastText(theme.palette.primary.main),
-          width: 250
+          width: '100vw'
         }),
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none'
-        }
-      },
+          textTransform: 'none',
+          fontSize: '1.1rem'
+        },
+        text: ({theme}) => ({
+          color: theme.palette.text.secondary
+        })
+      }
     }
 };
 

@@ -9,7 +9,7 @@ interface AntiqueGalleryItemProps extends ImageListItemProps {
 
 export const AntiqueGalleryWrapper = styled(ImageList)<ImageListProps>(() => ({
     overflowY: 'visible',
-    height: 'auto'
+    // height: 'auto'
 }));
 
 

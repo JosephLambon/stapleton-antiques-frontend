@@ -5,7 +5,9 @@ import {
   Container,
   Stack,
   useMediaQuery,
-  useTheme
+  useTheme,
+  useScrollTrigger,
+  Slide
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { CONSTANTS } from '../../common/constants';
@@ -17,9 +19,10 @@ import { LogoMobile, NavDrawerIconWrapper, LogoComputer, NavigationItemWrapper }
 import { AppBarButton } from '../Common/Common.styling';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-function NavigationBar() {
+function NavigationBar({ nonGalleryView = false } : {nonGalleryView? : boolean}) {
   const theme = useTheme();
   const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const scrolled = useScrollTrigger({threshold: 100});
 
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -27,7 +30,13 @@ function NavigationBar() {
   const closeDrawer = () => setDrawerOpen(false);
 
   return (
-    <AppBar position='sticky'>
+    <AppBar position='sticky' 
+    sx={{
+      backgroundColor: nonGalleryView ? theme.palette.primary.main : scrolled ? theme.palette.primary.main : "transparent",
+      transition: scrolled ? "0.3s" : "0.5s",
+    }}
+    elevation={scrolled ? 1 : 0}
+    >
       <Container disableGutters={onMobile ? true : false} maxWidth="lg">
         <Toolbar sx={{
           display: 'grid',
@@ -42,7 +51,7 @@ function NavigationBar() {
                   noWrap
                   to="/"
                 >
-                {CONSTANTS.COMPANY_NAME}
+                {nonGalleryView ? CONSTANTS.COMPANY_NAME : scrolled ? CONSTANTS.COMPANY_NAME : null}
                 </LogoMobile>
               <NavDrawerIconWrapper>
                 <IconButton
@@ -64,6 +73,9 @@ function NavigationBar() {
               <LogoComputer
                 variant="h4"
                 noWrap
+                sx={{
+                  visibility : nonGalleryView ? "visible" : scrolled ? "visible" : "hidden"
+                }}
                 to='/'
               >
                 {CONSTANTS.COMPANY_NAME}
@@ -72,7 +84,7 @@ function NavigationBar() {
                 <Stack direction="row" sx={{alignItems: 'center'}} spacing={4} margin={1}>
                   {pages.map((page) => (
                     <AppBarButton
-                    variant='h6'
+                    variant='h5'
                     key={page.title}
                     to={page.link}
                     >
@@ -91,3 +103,14 @@ function NavigationBar() {
 }
 
 export default NavigationBar;
+
+export function HideableNavigationBar() {
+  return (
+    <Slide appear={true} direction="down" in={true}>
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
+        <NavigationBar />
+      </div>
+    </Slide>
+  );
+}
+

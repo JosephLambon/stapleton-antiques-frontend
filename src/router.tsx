@@ -11,7 +11,7 @@ import Home from './routes/home';
 import ROUTES from './common/routes';
 import Gallery from './routes/children/gallery'
 import ErrorPage from './components/ErrorPage/ErrorPage';
-import AntiqueDetails from './components/AntiqueDetails/AntiqueDetails';
+import Details from './routes/children/details';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { loader as detailsLoader } from './components/AntiqueDetails/AntiqueDetails'
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       { index: true, element: <Gallery /> },
       {
         path: `${ROUTES.antique}/:id`,
-        element: <AntiqueDetails/>,
+        element: <Details/>,
         loader: detailsLoader
       }
     ]

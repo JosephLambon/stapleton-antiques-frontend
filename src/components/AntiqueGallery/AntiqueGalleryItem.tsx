@@ -1,9 +1,10 @@
-import { Fade, Box } from "@mui/material";
+import { Fade, Box, Typography, alpha } from "@mui/material";
 import { GalleryCard, CaptionComputer } from "./AntiqueGallery.styling";
 import useOnScreen from "../../hooks/useOnScreen";
 import CONSTANTS from "../../common/constants";
 import type { Antique } from "../../services/models/antique";
 import { useNavigate } from "react-router-dom";
+import theme from "../../theme";
 
 interface GalleryItemProps {
   item: Antique;
@@ -17,6 +18,8 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
     threshold: onMobile ? CONSTANTS.MOBILE.SCREEN_THRESHOLD : CONSTANTS.LARGER_SCREENS.SCREEN_THRESHOLD
   });
   const navigate = useNavigate();
+  const sold = item.status == "Sold";
+  const BASE_BLOB_STORAGE_URL: string = import.meta.env.VITE_BLOB_STORAGE_IMAGE_URL;
 
   return (
     <Fade
@@ -41,22 +44,28 @@ export function AntiqueGalleryItem({ item, onMobile }: GalleryItemProps) {
           }
         }}>
           <img
-            srcSet={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
-            src={`https://sastapletonantiques.blob.core.windows.net/antique-image-container/${item.thumbnail}?w=300&fit=crop&auto=format`}
+            srcSet={`${BASE_BLOB_STORAGE_URL}/${item.thumbnail}?w=300&fit=crop&auto=format&dpr=2 2x`}
+            src={`${BASE_BLOB_STORAGE_URL}/${item.thumbnail}?w=300&fit=crop&auto=format`}
             alt={item.name}
             loading="lazy"
-          />
+            />
+          { sold ? ( 
+            <Typography variant="h6" 
+              sx={{position:'absolute',
+                top: 0,
+                right: 0,
+                p: 1,
+                m:1.6,
+                textShadow: '-15px 5px 20px #000000ff',
+                borderRadius: '5px',
+                backgroundColor: alpha(theme.palette.primary.main, 0.9)
+              }}
+              >
+                SOLD
+            </Typography>) : null
+          }
+
           {onMobile ? null
-          // (
-          //   <ImageListItemBar
-          //   title={item.name}
-          //   subtitle={"£" + item.price}
-          //   position="below" 
-          //   sx={{
-          //     backgroundColor: 'transparent', // match your page background
-          //   }}
-          //   />
-          // )
            : (
             <CaptionComputer
             title={item.name}

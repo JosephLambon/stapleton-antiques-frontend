@@ -3,8 +3,8 @@ import MuiMarkdown from "mui-markdown";
 import { useState } from "react";
 
 function ExpandableMarkdown({description} : {description: string}) {
-    const readMoreRequired: boolean = (description.length > 410) ? true : false;
-    const collapsedDescription: string = description.slice(0, 411) + "..." ;
+    const readMoreRequired: boolean = (description.length >240) ? true : false;
+    const collapsedDescription: string = description.slice(0, 241) + "..." ;
     const [isExpanded, setIsExpanded] = useState(false);
 
     const markdownOverrides = {
@@ -30,7 +30,7 @@ function ExpandableMarkdown({description} : {description: string}) {
                     <Button
                     variant='text'
                     disableRipple
-                    color="inherit"
+                    color="secondary"
                     onClick={() => setIsExpanded(false)}
                     >
                         show less
@@ -44,6 +44,7 @@ function ExpandableMarkdown({description} : {description: string}) {
                     <Button
                     disableRipple
                     variant='text'
+                    size='small'
                     color="inherit"
                     onClick={() => setIsExpanded(true)}
                     >

@@ -4,7 +4,7 @@ export const CONSTANTS = {
     
     MOBILE: {
         GALLERY_COLUMNS: 2,
-        GALLERY_GAP: 4,
+        GALLERY_GAP: 3,
         SCREEN_THRESHOLD: 0.15,
         SKELETON_COUNT: 8
     },

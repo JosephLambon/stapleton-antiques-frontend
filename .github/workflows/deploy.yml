@@ -1,51 +1,210 @@
-name: Azure Static Web Apps CI/CD
+name: Deploy Static Web App
 
 on:
   push:
     branches:
       - development
+      - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - development
+      - main
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to deploy'
+        description: 'Branch to deploy to Dev/Test'
         required: true
         default: 'development'
+
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'workflow_dispatch'
+  # -----------------------------------------------------------------
+  # ENTRY 1: AUTOMATIC DEV DEPLOYMENT (Push Trigger)
+  # Runs only when code is pushed to 'development' branch.
+  # -----------------------------------------------------------------
+  auto_trigger_dev:
+    if: github.event_name == 'push' && github.ref_name == 'development'
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Auto Dev Deploy
+    outputs:
+      branch_name: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-      - name: Build And Deploy
-        id: builddeploy
+      - name: Build And Deploy (DEV)
+        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_YELLOW_WATER_02AFFF410 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          app_location: "/" 
+          output_location: "dist"
 
+  # -----------------------------------------------------------------
+  # ENTRY 2: MANUAL DEV DEPLOYMENT (Dispatch Trigger)
+  # Runs only when manually initiated, using the branch input.
+  # -----------------------------------------------------------------
+  manual_trigger_dev:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    name: Manual Dev Deploy
+    outputs:
+      branch_name: ${{ github.event.inputs.branch }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+          # Check out the branch specified in the manual input
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies
+
+      - name: Build
+        run: npm run build -- --mode development
+
+      - name: Build And Deploy (DEV)
+        id: deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/" 
+          output_location: "dist"
+
+  # -----------------------------------------------------------------
+  # PROMOTION JOB: TEST DEPLOYMENT (Needs Manual Approval)
+  # This job depends on EITHER the auto or manual trigger jobs.
+  # -----------------------------------------------------------------
+  test:
+    # Set needs to EITHER job, allowing the workflow to proceed if one succeeds
+    needs: [auto_trigger_dev, manual_trigger_dev] 
+    # Use always() to ensure the job runs as long as ONE of the needs succeeded
+    if: always() && (needs.auto_trigger_dev.result == 'success' || needs.manual_trigger_dev.result == 'success')
+    runs-on: ubuntu-latest
+    name: Deploy to Test
+    environment: Test # <--- Triggers the Manual Approval Gate
+    steps:
+      # This step determines which job actually ran and sets the branch name for checkout
+      - name: Determine Source Branch
+        id: branch_context
+        run: |
+          # Use outputs from the successful predecessor job
+          if ${{ needs.auto_trigger_dev.result == 'success' }}; then
+            echo "SOURCE_BRANCH=${{ needs.auto_trigger_dev.outputs.branch_name }}" >> $GITHUB_ENV
+          else
+            echo "SOURCE_BRANCH=${{ needs.manual_trigger_dev.outputs.branch_name }}" >> $GITHUB_ENV
+          fi
+          
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+          ref: ${{ env.SOURCE_BRANCH }} 
+
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies
+
+      - name: Build
+        # The 'vite build' command typically uses the production config by default.
+        # To use .env.test, you must pass the --mode test flag to Vite.
+        run: npm run build -- --mode test
+        # Assumes your package.json has a standard 'build' script.
+          
+      - name: Build And Deploy (TEST)
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_TEST }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/" 
+          output_location: "dist"
+          
+  # -----------------------------------------------------------------
+  # JOB 4: PROD DEPLOYMENT (Unchanged)
+  # Runs on 'main' branch push, requires Manual Approval via 'Production' Environment
+  # -----------------------------------------------------------------
+  prod:
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    name: Deploy to Prod
+    environment: Production # <--- Triggers the Manual Approval Gate
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          submodules: true
+          lfs: false
+      - name: Setup and Install
+        uses: ./.github/actions/setup-dependencies
+
+      - name: Build for Test Environment
+        run: npm run build -- --mode production
+
+      - name: Build And Deploy (PROD)
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_PROD }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          output_location: "dist"
+
+  deploy_pr_staging:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    name: PR Staging Environment
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+      
+      # If PR is into Dev, use Dev token for Staging
+      - name: Deploy PR Staging (Dev Context)
+        if: github.base_ref == 'development'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          output_location: "dist"
+
+      # # If PR is into Main, use Prod token for Staging
+      # - name: Deploy PR Staging (Prod Context)
+      #   if: github.base_ref == 'main'
+      #   uses: Azure/static-web-apps-deploy@v1
+      #   with:
+      #     azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_PROD }}
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     action: "upload"
+      #     app_location: "/"
+      #     output_location: "dist"
+
+  # -----------------------------------------------------------------
+  # JOB 5: CLEANUP
+  # Closes PR environments
+  # -----------------------------------------------------------------
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
-      - name: Close Pull Request
-        id: closepullrequest
+      - name: Close Pull Request (DEV)
+        if: github.base_ref == 'development'
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_YELLOW_WATER_02AFFF410 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_DEV }}
           action: "close"
+
+      - name: Close Pull Request (PROD)
+        if: github.base_ref == 'main'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_TOKEN_PROD }}
+          action: "close"  
