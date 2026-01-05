@@ -43,3 +43,8 @@ export const LandingPage = styled(Box)<BoxProps>(({theme}) => ({
     },
     paddingBottom: theme.spacing(10)
 }))
+
+export const Spacer = styled(Box)<BoxProps>(({theme}) => ({
+    height: '5vh',
+    backgroundColor: theme.palette.primary.main
+}))

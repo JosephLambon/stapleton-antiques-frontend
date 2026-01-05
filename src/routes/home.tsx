@@ -1,8 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import { MainBackground } from '../components/Common/Common.styling';
+import { MainBackground, Spacer } from '../components/Common/Common.styling';
 import { createContext, useState } from 'react';
+import Footer from '../components/Common/Footer';
 import React from 'react';
+import { useTheme } from '@mui/material';
 
 export interface StatusContextType {
   selectedStatuses: { available: boolean, sold: boolean };
@@ -18,15 +19,14 @@ function Home() {
       available: true,
       sold: false
     });
+  const theme = useTheme();
 
   return (
     <StatusContext.Provider value={{selectedStatuses, setSelectedStatuses}}>
       <MainBackground>
         <Outlet />
-
-        <Box id="footer" sx={{ flexShrink: 0, textAlign: 'center', py: 2 }}>
-          © 2025 Stapleton Antiques
-        </Box>
+        <Spacer />
+        <Footer />
       </MainBackground>
     </StatusContext.Provider>
   )

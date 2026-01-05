@@ -66,7 +66,7 @@ function Footer() {
             </Box>
             <Box sx={{textAlign:'center', marginBottom:theme.spacing(3), marginTop: 'auto'}}>
                 <Typography color="textSecondary" >
-                    © 2025 Stapleton Antiques
+                    © 2026 Stapleton Antiques
                 </Typography>
             </Box>
         </Box>

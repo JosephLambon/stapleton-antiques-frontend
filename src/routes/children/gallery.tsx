@@ -18,13 +18,13 @@ const Gallery = () => {
               width: '100%',
               height: '78vh',
               marginTop: '-2vh',
-              backgroundImage: 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/background.png)',
+              backgroundImage: onMobile ? 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/background.png)' : 'url(https://sastapletonantiques.blob.core.windows.net/antique-image-container/sa-desktop-landscape2.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               display: 'flex',
               justifyContent:'center',
               alignItems: 'end',
-              pb: onMobile ? 14 : 10,
+              pb: onMobile ? 14 : 10
             }}
           >
             <Typography variant='h1' color='textPrimary'
@@ -42,8 +42,8 @@ const Gallery = () => {
             </Typography>
         </Box>
 
-        <OutletContainer maxWidth='lg'>
-          <Box sx={{px:1, pb:1, pt: onMobile? 10 : 6, display: 'flex', justifyContent: 'space-between', alignContent: 'center'}}>
+        <OutletContainer maxWidth='lg' >
+          <Box sx={{px:1, pb:1, pt: onMobile? 10 : 6, display: 'flex', justifyContent: 'space-between', alignContent: 'center', }}>
             <Typography  variant={onMobile ? 'h2' : 'h3'}>Our latest</Typography>
             <Filter selectedStatuses={selectedStatuses} onChangeStatuses={setSelectedStatuses} />
           </Box>
