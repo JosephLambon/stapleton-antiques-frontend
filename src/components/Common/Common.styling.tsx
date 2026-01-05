@@ -25,7 +25,7 @@ export const OutletContainer = styled(Container)<OutletContainerProps>(({addpadd
     flex: '1 0 auto',
     paddingLeft: addpadding ? 'auto' : theme.spacing(0.5),
     paddingRight: addpadding ? 'auto' : theme.spacing(0.5),
-    paddingTop: addpadding ? 'auto' : 0,
+    paddingTop: addpadding ? 'auto' : 0
 }))
 
 export const LandingPage = styled(Box)<BoxProps>(({theme}) => ({
@@ -42,4 +42,9 @@ export const LandingPage = styled(Box)<BoxProps>(({theme}) => ({
         paddingBottom: theme.spacing(14)
     },
     paddingBottom: theme.spacing(10)
+}))
+
+export const Spacer = styled(Box)<BoxProps>(({theme}) => ({
+    height: '5vh',
+    backgroundColor: theme.palette.primary.main
 }))

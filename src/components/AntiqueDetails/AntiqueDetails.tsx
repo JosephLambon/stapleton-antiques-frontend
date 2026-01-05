@@ -43,35 +43,35 @@ function AntiqueDetails() {
     )
     
     return (
-        <OutletContainer maxWidth='lg' addpadding="true">
+        <OutletContainer maxWidth='lg' addpadding="true" >
             {onMobile ? (
-              <FlexColumnWrapper>
+              <FlexColumnWrapper >
                 <NavigateBack label={antique.name} />
-                <CarouselWrapperMobile>
-                  <ImageCarousel images={antique.images} />
-                </CarouselWrapperMobile>
-                <InformationWrapper onMobile={onMobile}>
-                  <ItemName variant='h3'><b>{antique.name}</b></ItemName>
-                  {sold ? (
-                    <Sold variant='h3'>SOLD</Sold>
-                  ) : (
-                    <>
-                      <Price variant='h3'><b>{formattedPrice}</b></Price>
-                      <OrBestOffer variant='h5'><b>or best offer</b></OrBestOffer>
-                    </>
-                  )}
-                  <ExpandableMarkdown description={antique.description} />
-                </InformationWrapper>
-                <FlexGrowSpacer />
-                <EnquireButton
-                onMobile={onMobile.toString()}
-                onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
-                size='large' 
-                variant='contained'
-                color="secondary"
-                >
-                  Enquire
-                </EnquireButton>
+                  <CarouselWrapperMobile >
+                    <ImageCarousel images={antique.images} />
+                  </CarouselWrapperMobile>
+                  <InformationWrapper onMobile={onMobile} >
+                    <ItemName variant='h3'><b>{antique.name}</b></ItemName>
+                    {sold ? (
+                      <Sold variant='h3'>SOLD</Sold>
+                    ) : (
+                      <>
+                        <Price variant='h3'><b>{formattedPrice}</b></Price>
+                        <OrBestOffer variant='h5'><b>or best offer</b></OrBestOffer>
+                      </>
+                    )}
+                    <ExpandableMarkdown description={antique.description}  />
+                  </InformationWrapper>
+                  <FlexGrowSpacer />
+                  <EnquireButton
+                  onMobile={onMobile.toString()}
+                  onClick={() => window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`}
+                  size='large' 
+                  variant='contained'
+                  color="secondary"
+                  >
+                    Enquire
+                  </EnquireButton>
               </FlexColumnWrapper>
               ) : (
                 <>
