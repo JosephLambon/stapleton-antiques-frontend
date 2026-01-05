@@ -4,7 +4,7 @@ import { AppBarButton } from '../Common/Common.styling';
 import Stack from '@mui/material/Stack';
 import CloseIcon from '@mui/icons-material/Close';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 
 type NavigationDrawerProps = {
     open: boolean;

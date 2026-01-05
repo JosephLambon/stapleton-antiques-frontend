@@ -3,7 +3,6 @@ import { MainBackground, Spacer } from '../components/Common/Common.styling';
 import { createContext, useState } from 'react';
 import Footer from '../components/Common/Footer';
 import React from 'react';
-import { useTheme } from '@mui/material';
 
 export interface StatusContextType {
   selectedStatuses: { available: boolean, sold: boolean };
@@ -19,7 +18,6 @@ function Home() {
       available: true,
       sold: false
     });
-  const theme = useTheme();
 
   return (
     <StatusContext.Provider value={{selectedStatuses, setSelectedStatuses}}>
