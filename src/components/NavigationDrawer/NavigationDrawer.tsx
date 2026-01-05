@@ -2,7 +2,9 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { pages } from '../../common/variables';
 import { AppBarButton } from '../Common/Common.styling';
 import Stack from '@mui/material/Stack';
+import CloseIcon from '@mui/icons-material/Close';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { Box, IconButton } from '@mui/material';
 
 type NavigationDrawerProps = {
     open: boolean;
@@ -19,10 +21,13 @@ export default function NavigationDrawer({open, onOpen, onClose} : NavigationDra
         onClose={onClose}
         onOpen={onOpen}
         >
-          <Stack spacing={5} padding={6}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', margin: 2 }}>
+              <CloseIcon fontSize='large' onClick={onClose}/>
+          </Box>
+          <Stack spacing={8} padding={6}>
             {pages.map((page) => (
                 <AppBarButton
-                variant='h4'
+                variant='h3'
                 key={page.title}
                 to={page.link}
                 >
@@ -32,7 +37,7 @@ export default function NavigationDrawer({open, onOpen, onClose} : NavigationDra
               <AppBarButton
                 onClick={() => window.open("https://www.instagram.com/stapletonantiques/")}
                 >
-                <InstagramIcon />
+                <InstagramIcon fontSize='large' />
               </AppBarButton>
             </Stack>
         </SwipeableDrawer>
